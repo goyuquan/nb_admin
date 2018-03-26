@@ -1,6 +1,0 @@
-<h2>Register</h2>
-<p>{{message}}</p>
-<p>
-  <button (click)="register()"  *ngIf="!authService.isLoggedIn">Login</button>
-  <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
-</p>
