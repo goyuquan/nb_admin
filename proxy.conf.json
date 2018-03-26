@@ -1,0 +1,10 @@
+{
+  "/users": {
+    "target": "http://122.114.42.162",
+    "secure": false
+  },
+  "/api": {
+    "target": "http://122.114.42.162",
+    "secure": false
+  }
+}

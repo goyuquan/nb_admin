@@ -1,0 +1,17 @@
+<div class="auth-container">
+  <div class="auth-wrap">
+    <h2>LOGIN</h2>
+
+    <div class="auth-form">
+      <mat-form-field class="auth-full-width">
+        <input matInput placeholder="email" type="email" [(ngModel)]="forms.email">
+      </mat-form-field>
+
+      <mat-form-field class="auth-full-width">
+        <input matInput placeholder="password" type="password" [(ngModel)]="forms.password">
+      </mat-form-field>
+    </div>
+
+    <button class="auth-submit" mat-raised-button color="primary" (click)="login()">Login</button>
+  </div>
+</div>
