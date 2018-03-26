@@ -1,0 +1,35 @@
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.main-container {
+  flex: 1;
+}
+
+.progress-bar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+
+mat-sidenav {
+  min-width: 14rem;
+  box-shadow: 6px 0 6px rgba(0,0,0,.1);
+
+  mat-nav-list {
+    .active {
+      border-right: 5px solid #00897B;
+    }
+  }
+}
+
+.logout-button {
+  margin-left: 1rem;
+}
+
+footer {
+  height: 30px;
+  background: #333;
+  color: #fff;
+}

@@ -1,0 +1,79 @@
+<h2>center list</h2>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="myGroup">
+  <mat-form-field>
+    <input matInput placeholder="Email"
+          formControlName="email"
+          [errorStateMatcher]="matcher">
+    <mat-hint>Errors appear instantly!</mat-hint>
+    <mat-error *ngIf="myGroup.get('email').hasError('email')
+                      && !myGroup.get('email').hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="myGroup.get('email').hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Favorite food" formControlName="state">
+      <mat-option *ngFor="let state of states"
+                  [value]="state">
+        {{ state }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div formGroupName="address">
+    <h4>Secret group</h4>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="street"
+              formControlName="street"
+              [errorStateMatcher]="matcher">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="city"
+        formControlName="city"
+        [errorStateMatcher]="matcher">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div formArrayName="secretLairs">
+    <div *ngFor="let address of secretLairs.controls; let i=index" [formGroupName]="i" >
+      <h4>Address #{{i + 1}}</h4>
+      <div>
+          <label>Street:
+            <input formControlName="street">
+          </label>
+          <label>City:
+            <input formControlName="city">
+          </label>
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="addLair()" type="button">Add a Secret Lair</button>
+
+  <p>Street value: {{ myGroup.get('address.street').value}}</p>
+
+  <button mat-raised-button color="primary" [disabled]="myGroup.pristine || !myGroup.valid">pristine</button>
+</form>
+<hr>
+
+<ul>
+  <li *ngFor="let item of center_list$ | async" [class.selected]="item.id === selectedId">
+    <a [routerLink]="[item.id]">
+      <span class="badge">{{ item.id }}_</span>{{ item.name }}
+    </a>
+  </li>
+</ul>
+
+
+
+
+<hr>
+<router-outlet></router-outlet>

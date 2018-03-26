@@ -1,0 +1,34 @@
+<mat-progress-bar *ngIf="httpLoading"
+                  mode="indeterminate"
+                  color="warn"
+                  class="progress-bar">
+</mat-progress-bar>
+
+
+<mat-toolbar *ngIf="isLogin" color="primary" >
+  <button mat-button (click)="sidenavToggle()">sidenav.toggle()</button>
+  <span routerLink="">Application Title</span>
+  <span class="fill-remaining-space"></span>
+  <span>Right Aligned Text</span>
+  <button (click)="logout()" class="logout-button" mat-button>退出</button>
+</mat-toolbar>
+
+<mat-sidenav-container  class="main-container">
+  <mat-sidenav *ngIf="isLogin" #sidenav mode="side" [opened]="sidenavVisible" class="main-sidenav">
+    <mat-nav-list>
+      <h3 mat-subheader> Folders </h3>
+      <mat-list-item *ngFor="let link of links"
+                    [routerLink]="link.url"
+                    routerLinkActive="active">
+        <span matLine >{{ link.name }}</span>
+      </mat-list-item>
+      <mat-list-item [routerLink]="[{ outlets: { popup: ['message'] } }]">Contact</mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>
+
+<router-outlet name="popup"></router-outlet>
+
+<footer *ngIf="isLogin">footer</footer>
