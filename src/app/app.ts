@@ -46,7 +46,7 @@ export class App {
 
   logout() {
     this.userinfo = this.authService.getUserInfo();  //获取用户信息
-    this.authService.logout('/api/logout/' + this.userinfo.id).subscribe(res => {
+    this.authService.logout('/api/user/logout/' + this.userinfo.id).subscribe(res => {
       this.authService.removeToken();
       this.authService.checkLoginStatus();
       this.router.navigate(['/login']); //退出成功后重定向

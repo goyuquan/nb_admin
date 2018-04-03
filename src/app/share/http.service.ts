@@ -22,7 +22,7 @@ export class HttpService {
   *文件上传请求专用
   */
   upload() {
-    const req = new HttpRequest('GET', 'users', {
+    const req = new HttpRequest('GET', '/api/user', {
       reportProgress: true,
     });
 

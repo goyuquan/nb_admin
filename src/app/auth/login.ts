@@ -2,21 +2,21 @@ import { Component } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { AuthService } from './auth.service';
 
-export class AuthModel { email: string; password: string; }
+export class AuthModel { phone: string; password: string; }
 
 @Component({
   templateUrl: './login.html',
   styleUrls: ['./auth.scss'],
 })
 export class Login {
-  forms: AuthModel = { email: '', password: '' };
+  forms: AuthModel = { phone: '', password: '' };
 
   constructor( public authService: AuthService, public router: Router ) { }
 
   login() {
-    this.authService.login('/api/login', this.forms).subscribe(res => {
+    this.authService.login('/api/user/login', this.forms).subscribe(res => {
 
-      this.authService.setToken(res.api_key);
+      this.authService.setToken(res.remember_token);
 
       let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/dashboard';
 
