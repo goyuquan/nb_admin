@@ -23,7 +23,7 @@ export class ResponseInterceptor implements HttpInterceptor {
 
             this.httpService.loading = false;
 
-            console.log('____________________===', req.headers);
+            console.log('____________________===', req);
 
             return next.handle(req).catch((error, caught) => {
                 this.authService.removeToken();
