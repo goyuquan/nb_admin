@@ -14,7 +14,7 @@ export class Login {
   constructor( public authService: AuthService, public router: Router ) { }
 
   login() {
-    this.authService.login('/api/user/login', this.forms).subscribe(res => {
+    this.authService.login('/api/auth/login', this.forms).subscribe(res => {
 
       this.authService.setToken(res.remember_token);
 

@@ -14,7 +14,7 @@ export class MyTableResolver implements Resolve<MyTableModel> {
     let id = route.paramMap.get('id');
 
     return this.mytableservice
-      .getMyTable('/api/user')
+      .getMyTable('/api/users/list')
       .map(mytable => {
         if (mytable) {
           return mytable;
