@@ -30,7 +30,7 @@ export class MyTable {
     this.route.data
     .subscribe(data => {
       this.dataSource = new MatTableDataSource<Element>(data.mytable.data);
-      console.log('==============', data)
+      console.log('res is ____________', data)
     });
   }
 

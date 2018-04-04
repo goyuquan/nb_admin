@@ -19,9 +19,7 @@ export class HttpsInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.httpService.loading = true; //显示loading
     const authToken = this.authService.getToken();
-    const authReq = authToken ? req.clone({setHeaders: {
-        Authorization: authToken
-    }}) : req;
+    const authReq = authToken ? req.clone({ setHeaders: { Authorization: authToken } }) : req;
     return next.handle(authReq);
   }
 }

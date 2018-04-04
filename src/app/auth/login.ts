@@ -15,16 +15,10 @@ export class Login {
 
   login() {
     this.authService.login('/api/auth/login', this.forms).subscribe(res => {
-
-      this.authService.setToken(res.remember_token);
-
       let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/dashboard';
-
       localStorage.setItem('userinfo', JSON.stringify(res.data)); //本地存储用户信息
-
       this.authService.checkLoginStatus();
       this.router.navigate([redirect]); //登录成功后重定向
     });
   }
-
 }

@@ -17,9 +17,8 @@ export class MyTableModel {
 export class MyTableService {
   constructor( private http: HttpClient ) {}
 
-  getMyTable(url): Observable<HttpResponse>{
-  // getMyTable(url): Observable<any> {
-    return this.http.get( url , { observe: 'response' });
+  getMyTable(url): Observable<any> {
+    return this.http.get( url )
   }
 
 }

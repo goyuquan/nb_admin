@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
 import { HttpService } from './http.service';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
@@ -20,10 +21,12 @@ export class ResponseInterceptor implements HttpInterceptor {
       .handle(req)
       .do(event => {
         if (event instanceof HttpResponse) {
-
+            //猎取响应头信息
+            const token = event.headers.get('Authorization');
+            console.log('((((((((((((((()))))))))))))))', token);
             this.httpService.loading = false;
 
-            console.log('____________________===', req);
+            this.authService.setToken(token);
 
             return next.handle(req).catch((error, caught) => {
                 this.authService.removeToken();

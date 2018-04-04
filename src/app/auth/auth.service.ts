@@ -37,6 +37,7 @@ export class AuthService {
   }
 
   setToken(param): void {
+      console.log('))))))))))))', param);
     localStorage.setItem('token', param);
   }
 
