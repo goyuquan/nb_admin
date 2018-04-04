@@ -21,11 +21,10 @@ export class ResponseInterceptor implements HttpInterceptor {
       .handle(req)
       .do(event => {
         if (event instanceof HttpResponse) {
-            //猎取响应头信息
-            const token = event.headers.get('Authorization');
-            console.log('((((((((((((((()))))))))))))))', token);
             this.httpService.loading = false;
 
+            //猎取响应头信息
+            const token = event.headers.get('Authorization');
             this.authService.setToken(token);
 
             return next.handle(req).catch((error, caught) => {
