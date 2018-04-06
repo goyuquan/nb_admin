@@ -7,6 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { CachingInterceptor } from './share/caching-interceptor'; //TODO HTTP缓存拦截器
 import { HttpsInterceptor } from './share/http-interceptor'; //HTTP拦截器
 import { ResponseInterceptor } from './share/response-interceptor'; //HTTP响应拦截器
+import { ErrorInterceptor } from './share/error-interceptor'; //HTTP响应拦截器
 
 
 import { App } from './app';
@@ -77,6 +78,11 @@ import 'hammerjs';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ResponseInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true,
     },
   ],
