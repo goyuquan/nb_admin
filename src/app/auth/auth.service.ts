@@ -43,6 +43,14 @@ export class AuthService {
         localStorage.removeItem('token');
     }
   }
+  
+  removeToken(): void {
+      localStorage.removeItem('token');
+  }
+
+  getUserInfo(): any {
+      return JSON.parse(localStorage.getItem('userinfo'));
+  }
 
   updateToken(): Observable<string> {
     const BASE_URL = 'localhost';
@@ -57,14 +65,6 @@ export class AuthService {
       this.setToken(authToken);
       return authToken;
     });
-  }
-
-  removeToken(): void {
-    localStorage.removeItem('token');
-  }
-
-  getUserInfo(): any {
-    return JSON.parse(localStorage.getItem('userinfo'));
   }
 
 }

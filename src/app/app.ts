@@ -28,8 +28,9 @@ export class App {
     this.sidenavVisible = this.isLogin ? true : false;
     this.links = [
      {name: 'dashboard', url: 'dashboard', active: false},
+     {name: 'user', url: 'user', active: false},
      {name: 'center', url: 'center', active: false},
-     {name: 'super-order', url: 'order', active: false},
+     {name: 'order', url: 'order', active: false},
      {name: 'table', url: 'table', active: false},
      {name: 'NotFound', url: 'four', active: false},
    ];

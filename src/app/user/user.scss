@@ -1,0 +1,19 @@
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.user-table {
+  overflow: auto;
+  min-height: 300px;
+}
+
+/* Column Widths */
+.mat-column-id {
+  max-width: 40px;
+}
+.mat-column-role {
+  max-width: 64px;
+}
