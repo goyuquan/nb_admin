@@ -21,11 +21,11 @@ const userRoute: Routes = [
   imports: [
     RouterModule.forChild(userRoute)
   ],
+  providers: [
+      UserResolver
+  ],
   exports: [
     RouterModule
-  ],
-  providers: [
-    UserResolver
   ]
 })
 export class UserRoutingModule {}

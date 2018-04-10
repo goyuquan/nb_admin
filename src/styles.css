@@ -6,6 +6,7 @@
 @import '~@angular/material/prebuilt-themes/purple-green.css'; */
 @import "assets/css/font.scss";
 @import "assets/css/forms.scss";
+@import "assets/css/tables.scss";
 
 /* everywhere else */
 * {

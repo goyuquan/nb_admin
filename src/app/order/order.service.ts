@@ -2,6 +2,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
 
 export class OrderModel {
   constructor( public id: number, public name: string ) {}
@@ -20,7 +21,12 @@ let ordersPromise = Promise.resolve(ORDERS);
 
 @Injectable()
 export class OrderService {
-  getOrderes() { return ordersPromise; }
+
+    constructor( private http: HttpClient ) {}
+
+  getOrderList(url): Observable<any> {
+    return this.http.get( url )
+  }
 
   getOrder(id: number | string) {
     return ordersPromise

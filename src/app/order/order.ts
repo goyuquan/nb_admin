@@ -3,7 +3,8 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 
-import { OrderModel, OrderService } from './order.service';
+import { OrderService } from './order.service';
+import { OrderModel } from './order.model';
 import { HttpService } from '../share/http.service';
 
 @Component({

@@ -32,12 +32,12 @@
 
     <ng-container matColumnDef="created_at">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Created_at </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.created_at}} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.created_at | date:'yyyy-MM-dd'}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="updated_at">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Updated_at </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.updated_at}} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.updated_at | date:'yyyy-MM-dd'}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
