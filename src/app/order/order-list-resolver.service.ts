@@ -15,7 +15,7 @@ export class OrderListResolver implements Resolve<OrderModel> {
     let id = route.paramMap.get('id');
 
     return this.orderService
-      .getOrderList('/api/orderLists/list')
+      .getOrderList('/api/order/list')
       .map(orderList => {
         if (orderList) {
           return orderList;

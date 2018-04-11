@@ -13,7 +13,7 @@ const ordereRoute: Routes = [
         path: '',
         canActivate: [ AuthGuard ],
         resolve: {
-            user: OrderListResolver
+            orders: OrderListResolver
         },
         children: [
             { path: '',  component: Order },

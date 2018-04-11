@@ -1,44 +1,62 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+
 import { OrderService } from './order.service';
 import { OrderModel } from './order.model';
-import { HttpService } from '../share/http.service';
 
 @Component({
-  selector: 'order',
-  templateUrl: './order.html',
-  styleUrls: ['./order.css'],
+    selector: 'order',
+    templateUrl: './order.html',
+    styleUrls: ['./order.scss'],
 })
 export class Order {
-  detail_list = [
-    {name: 'one', id: 11},
-    {name: 'two', id: 12},
-    {name: 'three', id: 13},
-    {name: 'four', id: 14},
-  ];
-  orders$: Observable<OrderModel[]>;
+    dataSource: MatTableDataSource<Element>;
 
-  private selectedId: number;
-  results: string[];
+    orders$: Observable<OrderModel[]>;
 
-  constructor(
-    private http: HttpService,
-    private service: OrderService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private selectedId: number;
+    results: string[];
 
-  ngOnInit() {
-    this.orders$ = this.route.paramMap
-      .switchMap((params: ParamMap) => {
-        // (+) before `params.get()` turns the string into a number
-        this.selectedId = +params.get('id');
-        return this.service.getOrderes();
-      });
-  }
+    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  isSelected(order: OrderModel) { return order.id === this.selectedId; }
+    constructor(
+        private service: OrderService,
+        private route: ActivatedRoute,
+        private router: Router
+    ) {}
+
+    ngOnInit() {
+
+        this.route.data
+        .subscribe(data => {
+            this.dataSource = new MatTableDataSource<Element>(data.orders.data);
+            console.log('orders is ____________', this.dataSource)
+        });
+
+        // this.orders$ = this.route.paramMap
+        //   .switchMap((params: ParamMap) => {
+        //     // (+) before `params.get()` turns the string into a number
+        //     this.selectedId = +params.get('id');
+        //     return this.service.getOrderList();
+        //   });
+    }
+
+
+      ngAfterViewInit() {
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      }
+
+      applyFilter(filterValue: string) {
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        this.dataSource.filter = filterValue;
+      }
+
+    // isSelected(order: OrderModel) { return order.id === this.selectedId; }
 }

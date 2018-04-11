@@ -2,6 +2,13 @@ import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { FormsModule }    from '@angular/forms';
 
+import {
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatInputModule,
+} from '@angular/material';
+
 import { Order }    from './order';
 import { OrderDetail }  from './order-detail';
 
@@ -13,6 +20,10 @@ import { OrderRoutingModule } from './order-routing.module';
     CommonModule,
     FormsModule,
     OrderRoutingModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
   ],
   declarations: [
     Order,

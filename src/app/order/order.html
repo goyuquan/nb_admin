@@ -1,11 +1,64 @@
-<h2>OrderList</h2>
-<hr>
-<ul>
-  <li *ngFor="let item of orders$| async" [class.selected]="item.id === selectedId">
-    <a [routerLink]="['/order', item.id]">
-      <span class="badge">{{ item.id }}_</span>{{ item.name }}
-    </a>
-  </li>
-</ul>
+<h1>OrderList</h1>
 
-<pre>{{route}}</pre>
+
+<div class="example-container mat-elevation-z8">
+
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" matSort  class="order-table">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="user_id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> User_id </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.user_id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="contact_id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Contact_id </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.contact_id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.status}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="period">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Period </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.period}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delivery_time">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Delivery_time </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.delivery_time}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="created_at">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Created_at </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.created_at | date:'yyyy-MM-dd'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="updated_at">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Updated_at </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.updated_at | date:'yyyy-MM-dd'}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[10, 20, 50]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>
