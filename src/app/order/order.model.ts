@@ -5,4 +5,6 @@ export class OrderModel {
   status: number;
   period: string;
   delivery_time: string;
+  created_at: string;
+  updated_at: string;
 }

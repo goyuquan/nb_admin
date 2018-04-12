@@ -10,6 +10,8 @@
   min-height: 300px;
 }
 
-.mat-column-role {
-  max-width: 64px;
+.mat-column-user_id,
+.mat-column-contact_id,
+.mat-column-status {
+  max-width: 50px;
 }
