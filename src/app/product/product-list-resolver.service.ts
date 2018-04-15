@@ -5,22 +5,22 @@ import { Observable } from 'rxjs/Observable';
 import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
 import { HttpService } from '../share/http.service';
-import { UserModel } from './user.model';
+import { ProductModel } from './product.model';
 
 @Injectable()
-export class UserResolver implements Resolve<UserModel> {
+export class ProductListResolver implements Resolve<ProductModel> {
   constructor(private httpService: HttpService, private router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserModel> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ProductModel> {
     let id = route.paramMap.get('id');
 
     return this.httpService
-      .get('/api/users/list')
-      .map(user => {
-        if (user) {
-          return user;
+      .get('/api/product/list')
+      .map(productList => {
+        if (productList) {
+          return productList;
         } else {
-          this.router.navigate(['/table']);
+          this.router.navigate(['/dashboard']);
           return null;
         }
       });

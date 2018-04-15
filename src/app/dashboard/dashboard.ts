@@ -7,37 +7,31 @@ import { slideInDownAnimation } from '../animations';
 import { DashboardModel, DashboardService } from './dashboard.service';
 
 @Component({
-  templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.css'],
-  animations: [ slideInDownAnimation ],
+    templateUrl: './dashboard.html',
+    styleUrls: ['./dashboard.css'],
+    animations: [ slideInDownAnimation ],
 })
 export class Dashboard {
-  @HostBinding('@routeAnimation') routeAnimation = true;
-  @HostBinding('style.display') display = 'block';
-  detail_list = [
-    {name: 'one', id: 11},
-    {name: 'two', id: 12},
-    {name: 'three', id: 13},
-    {name: 'four', id: 14},
-  ];
-  dashboards$: Observable<DashboardModel[]>;
+    @HostBinding('@routeAnimation') routeAnimation = true;
+    @HostBinding('style.display') display = 'block';
+    dashboards$: Observable<DashboardModel[]>;
 
-  private selectedId: number;
-  results: string[];
+    private selectedId: number;
+    results: string[];
 
-  constructor(
-    private service: DashboardService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    constructor(
+        private service: DashboardService,
+        private route: ActivatedRoute,
+        private router: Router
+    ) {}
 
-  ngOnInit() {
-    this.dashboards$ = this.route.paramMap
-      .switchMap((params: ParamMap) => {
-        this.selectedId = +params.get('id');
-        return this.service.getDashboardes();
-      });
-  }
+    ngOnInit() {
+        this.dashboards$ = this.route.paramMap
+        .switchMap((params: ParamMap) => {
+            this.selectedId = +params.get('id');
+            return this.service.getDashboardes();
+        });
+    }
 
-  isSelected(dashboard: DashboardModel) { return dashboard.id === this.selectedId; }
+    isSelected(dashboard: DashboardModel) { return dashboard.id === this.selectedId; }
 }

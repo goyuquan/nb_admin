@@ -5,7 +5,9 @@ import { Observable } from 'rxjs/Observable';
 
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 
-import { UserModel, UserService } from './user.service';
+import { UserService } from './user.service';
+import { UserModel } from './user.model';
+import { ConfigService } from '../share/config.service';
 
 @Component({
   selector: 'user',
@@ -15,14 +17,13 @@ import { UserModel, UserService } from './user.service';
 export class User {
   displayedColumns = ['id', 'phone', 'name', 'role', 'created_at', 'updated_at'];
   dataSource: MatTableDataSource<Element>;
-  users: any;
-  editName: string = '';
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private route: ActivatedRoute,
+    private config: ConfigService,
     private router: Router
   ) {}
 
@@ -30,7 +31,6 @@ export class User {
     this.route.data
     .subscribe(data => {
       this.dataSource = new MatTableDataSource<Element>(data.user.data);
-      console.log('res is ____________', data)
     });
   }
 

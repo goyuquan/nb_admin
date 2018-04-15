@@ -22,6 +22,7 @@ import { AuthService } from './auth/auth.service';
 import { DialogService } from './dialog.service';
 import { HttpService } from './share/http.service';
 import { ErrorService } from './share/error.service';
+import { ConfigService } from './share/config.service';
 
 import {
   MatButtonModule,
@@ -70,6 +71,7 @@ import 'hammerjs';
     AuthService,
     HttpService,
     ErrorService,
+    ConfigService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpsInterceptor,

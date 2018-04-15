@@ -1,15 +1,40 @@
-<h2>OrderDetail</h2>
-<p>Get your orders here</p>
-<pre>{{route}}</pre>
+<mat-card>
+    <mat-card-content>
+        <h2 class="example-h2">OrderDetails</h2>
+        <mat-tab-group class="demo-tab-group">
+            <mat-tab label="Tab 1">
 
-<div *ngIf="order">
-  <h3>"{{ order.name }}"</h3>
-  <div>
-    <label>Id: </label>{{ order.id }}</div>
-  <div>
-    <label>Name: </label>
-    <input [(ngModel)]="order.name" placeholder="name"/>
-  </div>
-</div>
+                <div class="table-container mat-elevation-z8">
 
-<button md-raised-button (click)="gotoOrderlist(order)">back</button>
+                    <mat-table #table [dataSource]="dataSource" class="order-table">
+
+                        <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="value">
+                            <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.value}} </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                    </mat-table>
+
+                </div>
+            </mat-tab>
+            <mat-tab label="Tab 2">
+                <div class="demo-tab-content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </div>
+            </mat-tab>
+            <mat-tab label="Tab 4">
+                <div class="demo-tab-content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>

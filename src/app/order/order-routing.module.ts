@@ -7,17 +7,20 @@ import { Order } from './order';
 import { OrderDetail } from './order-detail';
 
 import { OrderListResolver } from './order-list-resolver.service';
+import { OrderDetailResolver } from './order-detail-resolver.service';
 
 const ordereRoute: Routes = [
     {
         path: '',
         canActivate: [ AuthGuard ],
-        resolve: {
-            orders: OrderListResolver
-        },
+        resolve: { orders: OrderListResolver },
         children: [
-            { path: '',  component: Order },
-            { path: ':id', component: OrderDetail }
+            {
+                path: ':id',
+                component: OrderDetail,
+                resolve: { order: OrderDetailResolver }
+            },
+            { path: '',  component: Order }
         ]
     }
 ];
@@ -27,7 +30,8 @@ const ordereRoute: Routes = [
         RouterModule.forChild(ordereRoute)
     ],
     providers: [
-        OrderListResolver
+        OrderListResolver,
+        OrderDetailResolver
     ],
     exports: [
         RouterModule

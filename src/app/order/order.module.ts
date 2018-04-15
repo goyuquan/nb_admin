@@ -7,6 +7,10 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatInputModule,
+  MatTabsModule,
+  MatCardModule,
+  MatButtonModule,
+  MatIconModule
 } from '@angular/material';
 
 import { Order }    from './order';
@@ -24,6 +28,10 @@ import { OrderRoutingModule } from './order-routing.module';
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
+    MatTabsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule
   ],
   declarations: [
     Order,

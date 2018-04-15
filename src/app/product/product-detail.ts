@@ -5,17 +5,17 @@ import 'rxjs/add/operator/switchMap';
 import { slideInDownAnimation } from '../animations';
 import { MatTableDataSource } from '@angular/material';
 
-import { OrderService } from './order.service';
+import { ProductService } from './product.service';
 import { ConfigService } from '../share/config.service';
-import { OrderModel } from './order.model';
+import { ProductModel } from './product.model';
 
 @Component({
-    selector: 'order-detail',
-    templateUrl: './order-detail.html',
-    styleUrls: ['./order-detail.scss'],
+    selector: 'product-detail',
+    templateUrl: './product-detail.html',
+    styleUrls: ['./product-detail.scss'],
     animations: [ slideInDownAnimation ]
 })
-export class OrderDetail {
+export class ProductDetail {
     @HostBinding('@routeAnimation') routeAnimation = true;
     @HostBinding('style.display') display = 'block';
     displayedColumns = [
@@ -24,25 +24,33 @@ export class OrderDetail {
     ];
     dataSource: MatTableDataSource<Element>;
 
-    order: OrderModel;
+    product = [];
+    resolveData = [];
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private service: OrderService
+        private service: ProductService
     ) {}
 
     ngOnInit() {
         this.route.data
         .subscribe(data => {
-            let order = [];
-            for (let v in data.order.data) {
+            this.resolveData = data.product.data;
+            for (let v in this.resolveData) {
                 let o = {};
-                o['value'] = (data.order.data)[v];
+                o['value'] = (this.resolveData)[v];
                 o['name'] = v;
-                order.push(o);
+                this.product.push(o);
             }
-            console.log(order);
-            this.dataSource = new MatTableDataSource<Element>(order);
+
+            this.dataSource = new MatTableDataSource<Element>(this.product);
         });
+    }
+
+    onEdit() {
+        this.router.navigate([
+            'product/edit/' + this.resolveData['id'],
+            this.resolveData
+        ]);
     }
 }
