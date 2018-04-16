@@ -4,17 +4,8 @@
 </h1>
 <mat-divider></mat-divider>
 
-<div class="table-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource" class="order-table">
-        <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="value">
-            <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.value}} </mat-cell>
-        </ng-container>
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-</div>
+<mat-card>
+    <mat-card-content>
+        <h2>Tabs with text labels</h2>
+    </mat-card-content>
+</mat-card>

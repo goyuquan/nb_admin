@@ -10,6 +10,7 @@ import {
     MatInputModule,
     MatButtonModule,
     MatDividerModule,
+    MatCardModule,
     MatIconModule
 } from '@angular/material';
 
@@ -32,6 +33,7 @@ import { ProductRoutingModule } from './product-routing.module';
         MatInputModule,
         MatButtonModule,
         MatDividerModule,
+        MatCardModule,
         MatIconModule
     ],
     declarations: [
