@@ -4,23 +4,23 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
-import { OrderService } from './order.service';
+import { HttpService } from '../share/http.service';
 import { OrderModel } from './order.model';
 
 @Injectable()
 export class OrderListResolver implements Resolve<OrderModel> {
-  constructor(private orderService: OrderService, private router: Router) {}
+  constructor(private httpService: HttpService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<OrderModel> {
     let id = route.paramMap.get('id');
 
-    return this.orderService
-      .getOrderList('/api/order/list')
+    return this.httpService
+      .get('/api/order/list')
       .map(orderList => {
         if (orderList) {
           return orderList;
         } else {
-          this.router.navigate(['/table']);
+          this.router.navigate(['/dashboard']);
           return null;
         }
       });

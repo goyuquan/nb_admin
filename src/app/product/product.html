@@ -1,4 +1,4 @@
-<h1>OrderList</h1>
+<h1>ProductList</h1>
 
 <div class="table-container mat-elevation-z8">
 
@@ -15,29 +15,29 @@
       <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="user_id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> User_id </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.user_id}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="contact_id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Contact_id </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.contact_id}} </mat-cell>
-    </ng-container>
-
     <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.status}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.status}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="period">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Period </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.period}} </mat-cell>
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="delivery_time">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Delivery_time </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.delivery_time}} </mat-cell>
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="unit">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Unit </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.unit}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="origin">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Origin </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.origin}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="created_at">
@@ -54,7 +54,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> detail </mat-header-cell>
         <mat-cell *matCellDef="let row">
             <button mat-mini-fab color="primary">
-                <mat-icon routerLink="/order/{{row.id}}">forward</mat-icon>
+                <mat-icon routerLink="/product/{{row.id}}">forward</mat-icon>
             </button>
         </mat-cell>
     </ng-container>

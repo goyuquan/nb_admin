@@ -6,9 +6,10 @@
 
 
 <mat-toolbar *ngIf="isLogin" color="primary" >
-  <button mat-button (click)="sidenavToggle()">sidenav.toggle()</button>
+  <mat-icon class="menu-toggle"  (click)="sidenavToggle()"> menu </mat-icon>
   <span routerLink="">Application Title</span>
   <span class="fill-remaining-space"></span>
+  <button mat-button *ngIf="backAvailable" (click)="back()">back</button>
   <span>Right Aligned Text</span>
   <button (click)="logout()" class="logout-button" mat-button>退出</button>
 </mat-toolbar>
@@ -22,13 +23,13 @@
                     routerLinkActive="active">
         <span matLine >{{ link.name }}</span>
       </mat-list-item>
-      <mat-list-item [routerLink]="[{ outlets: { popup: ['message'] } }]">Contact</mat-list-item>
+      <!-- <mat-list-item [routerLink]="[{ outlets: { popup: ['message'] } }]">Contact</mat-list-item> -->
       <mat-divider></mat-divider>
     </mat-nav-list>
   </mat-sidenav>
   <router-outlet></router-outlet>
 </mat-sidenav-container>
 
-<router-outlet name="popup"></router-outlet>
+<!-- <router-outlet name="popup"></router-outlet> -->
 
-<footer *ngIf="isLogin">footer</footer>
+<!-- <footer *ngIf="isLogin">footer</footer> -->

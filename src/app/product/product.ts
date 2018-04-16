@@ -6,24 +6,24 @@ import { Observable } from 'rxjs/Observable';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 
 import { ConfigService } from '../share/config.service';
-import { OrderModel } from './order.model';
+import { ProductModel } from './product.model';
 
 @Component({
-    selector: 'order',
-    templateUrl: './order.html',
-    styleUrls: ['./order.scss'],
+    selector: 'product',
+    templateUrl: './product.html',
+    styleUrls: ['./product.scss'],
 })
-export class Order {
+export class Product {
     displayedColumns = [
         'id',
-        'user_id',
-        'contact_id',
         'status',
-        'period',
-        'delivery_time',
+        'name',
+        'price',
+        'unit',
+        'origin',
         'created_at',
         'updated_at',
-        'detail',
+        'detail'
     ];
     dataSource: MatTableDataSource<Element>;
 
@@ -40,7 +40,7 @@ export class Order {
 
         this.route.data
         .subscribe(data => {
-            this.dataSource = new MatTableDataSource<Element>(data.orders.data);
+            this.dataSource = new MatTableDataSource<Element>(data.products.data);
         });
     }
 
