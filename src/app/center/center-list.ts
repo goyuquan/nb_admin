@@ -31,6 +31,7 @@ export class CenterList implements OnInit {
   // @HostBinding('@routeAnimation') routeAnimation = true;
   // @HostBinding('style.display') display = 'block';
 
+  myGroup: FormGroup;
   forms: any;
   center_list$: Observable<Center[]>;
   selectedId: number;
@@ -40,7 +41,6 @@ export class CenterList implements OnInit {
     {name: 'three', id: 3},
     {name: 'four', id: 4},
   ];
-  myGroup: FormGroup;
   states = ['one', 'two', 'three', 'four'];
 
   centers = {

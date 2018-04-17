@@ -6,16 +6,15 @@ import 'rxjs/add/operator/switchMap';
 
 import { ErrorStateMatcher } from '@angular/material/core';
 
-
 import { ProductService } from './product.service';
 import { ConfigService } from '../share/config.service';
 import { ProductModel } from './product.model';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
+    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+        const isSubmitted = form && form.submitted;
+        return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    }
 }
 
 @Component({
@@ -27,18 +26,34 @@ export class ProductEdit {
     forms: any;
     selectedId: number;
     productData = {
-
+        status: 'this is status'
     }
     matcher = new MyErrorStateMatcher();
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
+        private fb: FormBuilder,
         private service: ProductService
-    ) {}
+    ) {
+        this.createForm();
+        this.productGroup.patchValue({//初始整个表单值
+            status: this.productData.state,
+        });
+    }
 
     ngOnInit() {
-        console.log(this.route.snapshot.paramMap['params'])
+        console.log(this.route.snapshot.paramMap['params']);
+    }
+
+    createForm() {
+        this.productGroup = this.fb.group({
+            status: [ '', [ Validators.required ] ]
+        });
+    }
+
+    onSubmit() {
+
     }
 
 }
