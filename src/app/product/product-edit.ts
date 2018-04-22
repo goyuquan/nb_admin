@@ -78,6 +78,5 @@ export class ProductEdit {
 
     }
 
-    set name() { console.log(this.productGroup.get('name')); }
 
 }
