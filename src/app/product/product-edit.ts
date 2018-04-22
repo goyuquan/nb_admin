@@ -28,10 +28,15 @@ export class ProductEdit {
     productData = {
         status: 'this is status',
         options: {
-            unit: [
+            status: [
                 { name: "下线", value: 0 },
                 { name: "准备", value: 2 },
                 { name: "上线", value: 1 }
+            ],
+            unit: [
+                { name: "kg", value: 0 },
+                { name: "g", value: 2 },
+                { name: "个", value: 1 }
             ]
         }
     };
@@ -45,7 +50,7 @@ export class ProductEdit {
     ) {
         this.createForm();
         this.productGroup.patchValue({//初始整个表单值
-            status: this.productData.status,
+            // status: this.productData.status,
             // unit: this.productData.options.unit,
         });
     }
@@ -56,8 +61,11 @@ export class ProductEdit {
 
     createForm() {
         this.productGroup = this.fb.group({
-            status: [ '', [ Validators.required ] ],
-            name: [ '', [ Validators.required ] ],
+            status: [ null, [ Validators.required ] ],
+            name: [ 'gyftiohiu', [
+                Validators.required,
+                Validators.minLength(2),
+            ]],
             price: [ '', [ Validators.required ] ],
             unit: [ null, [ Validators.required ] ],
             origin: [ '', [ Validators.required ] ],
@@ -69,5 +77,7 @@ export class ProductEdit {
     onSubmit() {
 
     }
+
+    set name() { console.log(this.productGroup.get('name')); }
 
 }

@@ -1,36 +1,19 @@
-<h1 class="title">
-    product Edit
-    <button mat-raised-button color="primary" (click)="onEdit()">Edit</button>
-</h1>
+<h1 class="title"> product Edit </h1>
 <mat-divider></mat-divider>
+
 
 <mat-card>
     <mat-card-content>
         <h2>Tabs with text labels</h2>
 
         <form (ngSubmit)="onSubmit()" [formGroup]="productGroup" class="nb-form">
-            <mat-form-field>
-                <input matInput placeholder="status"
-                formControlName="status"
-                [errorStateMatcher]="matcher">
-                <mat-hint>Errors appear instantly!</mat-hint>
-                <mat-error *ngIf="productGroup.get('status').hasError('status')
-                    && !productGroup.get('status').hasError('required')">
-                    Please enter a valid status address
-                </mat-error>
-                <mat-error *ngIf="productGroup.get('status').hasError('required')">
-                    status is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
 
             <mat-form-field>
                 <input matInput placeholder="name"
                 formControlName="name"
                 [errorStateMatcher]="matcher">
-                <mat-hint>Errors appear instantly!</mat-hint>
-                <mat-error *ngIf="productGroup.get('name').hasError('name')
-                    && !productGroup.get('name').hasError('required')">
-                    Please enter a valid name address
+                <mat-error *ngIf="productGroup.get('name').hasError('minlength')">
+                    Please enter a minLength name
                 </mat-error>
                 <mat-error *ngIf="productGroup.get('name').hasError('required')">
                     name is <strong>required</strong>
@@ -38,13 +21,30 @@
             </mat-form-field>
 
             <mat-form-field>
-              <mat-select placeholder="unit" formControlName="unit">
-                <mat-option *ngFor="let unit of productData.options.unit"
-                            [value]="unit.value">
-                  {{ unit.name }}
-                </mat-option>
-              </mat-select>
+                <mat-select placeholder="status" formControlName="status">
+                    <mat-option *ngFor="let status of productData.options.status"
+                    [value]="status.value">
+                    {{ status.name }} </mat-option>
+                </mat-select>
+                <mat-error *ngIf="productGroup.get('status').hasError('required')">
+                    status is <strong>required</strong>
+                </mat-error>
             </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="unit" formControlName="unit">
+                    <mat-option *ngFor="let unit of productData.options.unit"
+                    [value]="unit.value">
+                    {{ unit.name }} </mat-option>
+                </mat-select>
+                <mat-error *ngIf="productGroup.get('unit').hasError('required')">
+                    unit is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary"
+            [disabled]="productGroup.pristine || !productGroup.valid">
+            submit </button>
 
         </form>
     </mat-card-content>
