@@ -8,6 +8,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 
 import { ProductService } from './product.service';
 import { ConfigService } from '../share/config.service';
+import { PatternService } from '../share/parttern.service';
 import { ProductModel } from './product.model';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -46,7 +47,8 @@ export class ProductEdit {
         private route: ActivatedRoute,
         private router: Router,
         private fb: FormBuilder,
-        private service: ProductService
+        private service: ProductService,
+        private patternService: PatternService
     ) {
         this.createForm();
         this.productGroup.patchValue({//初始整个表单值
@@ -61,12 +63,15 @@ export class ProductEdit {
 
     createForm() {
         this.productGroup = this.fb.group({
-            status: [ null, [ Validators.required ] ],
             name: [ 'gyftiohiu', [
                 Validators.required,
-                Validators.minLength(2),
+                Validators.maxLength(20),
             ]],
-            price: [ '', [ Validators.required ] ],
+            status: [ null, [ Validators.required ] ],
+            price: [ null, [
+                Validators.required,
+                Validators.pattern(this.patternService.price),
+            ] ],
             unit: [ null, [ Validators.required ] ],
             origin: [ '', [ Validators.required ] ],
             img_id: [ '', [ Validators.required ] ],

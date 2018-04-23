@@ -12,11 +12,23 @@
                 <input matInput placeholder="name"
                 formControlName="name"
                 [errorStateMatcher]="matcher">
-                <mat-error *ngIf="productGroup.get('name').hasError('minlength')">
-                    Please enter a minLength name
+                <mat-error *ngIf="productGroup.get('name').hasError('maxlength')">
+                    maxlength
                 </mat-error>
                 <mat-error *ngIf="productGroup.get('name').hasError('required')">
                     name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="price"
+                formControlName="price"
+                [errorStateMatcher]="matcher">
+                <mat-error *ngIf="productGroup.get('price').hasError('pattern')">
+                    Please enter a price
+                </mat-error>
+                <mat-error *ngIf="productGroup.get('price').hasError('required')">
+                    price is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
 
@@ -41,6 +53,8 @@
                     unit is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
+
+            <mat-divider></mat-divider><br><br>
 
             <button mat-raised-button color="primary"
             [disabled]="productGroup.pristine || !productGroup.valid">
