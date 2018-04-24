@@ -59,28 +59,35 @@ export class ProductEdit {
 
     ngOnInit() {
         console.log(this.route.snapshot.paramMap['params']);
+
+        // this.route.params
+        // .switchMap((params: Params) => this.survey.getSurvey(params['id']))
+        // .subscribe((survey: any) => {
+        //   // update the form controls
+        // });
     }
 
     createForm() {
         this.productGroup = this.fb.group({
-            name: [ 'gyftiohiu', [
-                Validators.required,
-                Validators.maxLength(20),
-            ]],
-            status: [ null, [ Validators.required ] ],
-            price: [ null, [
+            name: [ 'gyftiohiu', [ Validators.required ]],
+            price: [ '', [
                 Validators.required,
                 Validators.pattern(this.patternService.price),
             ] ],
-            unit: [ null, [ Validators.required ] ],
-            origin: [ '', [ Validators.required ] ],
-            img_id: [ '', [ Validators.required ] ],
-            describe: [ '', [ Validators.required ] ],
+            status: [ NaN, [ Validators.required ]],
+            unit: [ NaN, [ Validators.required ]],
+            origin: [ '', [ Validators.required ]],
+            img_id: [ '' ],
+            describe: [ '', [ Validators.required ]],
         });
     }
 
     onSubmit() {
 
+    }
+
+    setv() {
+        this.productGroup.patchValue({name: ''})
     }
 
 
