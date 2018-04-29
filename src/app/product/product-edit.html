@@ -107,6 +107,7 @@
             <mat-divider inset ></mat-divider>
 
             <button mat-raised-button color="primary"
+            (click)="onSubmit"
             [disabled]="productGroup.pristine || !productGroup.valid">
             submit </button>
 

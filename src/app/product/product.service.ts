@@ -12,9 +12,11 @@ export class ProductService {
 
     constructor( private http: HttpClient ) {}
 
-    // getProduct(id: number | string) {
-    //     return ordersPromise
-    //     // (+) before `id` turns the string into a number
-    //     .then(orders => orders.find(order => order.id === +id));
-    // }
+    get(url, param): Observable<any> {
+      return this.http.get( url, { params: param });
+    }
+
+    postProduct(url, param): Observable<any> {
+      return this.http.post( url, param);
+    }
 }

@@ -49,6 +49,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                         }
                     );
                 }
+                case 422: //表单验证失败
+                {
+                    this.snackBar.open( error.error.message, 'close', { duration: 5000 });
+                    return [];
+                }
                 default:
                     return Observable.throw(error);
             }

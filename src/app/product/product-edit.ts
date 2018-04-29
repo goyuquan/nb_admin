@@ -26,6 +26,7 @@ export class ProductEdit {
     productGroup: FormGroup;
     forms: any;
     selectedId: number;
+    prodectResource = {};
     productData = {
         status: 'this is status',
         options: {
@@ -47,7 +48,7 @@ export class ProductEdit {
         private route: ActivatedRoute,
         private router: Router,
         private fb: FormBuilder,
-        private service: ProductService,
+        private productService: ProductService,
         private patternService: PatternService
     ) {
         this.createForm();
@@ -59,6 +60,7 @@ export class ProductEdit {
 
     ngOnInit() {
         console.log(this.route.snapshot.paramMap['params']);
+        this.prodectResource = this.route.snapshot.paramMap['params'];
 
         // this.route.params
         // .switchMap((params: Params) => this.survey.getSurvey(params['id']))
@@ -83,7 +85,12 @@ export class ProductEdit {
     }
 
     onSubmit() {
-
+        this.productService.postProduct(
+            '/api/product/edit/' + this.prodectResource['id'],
+            this.productGroup.value
+        ).subscribe(res => {
+            console.log(res);
+        });
     }
 
     setv() {
