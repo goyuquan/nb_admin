@@ -9,6 +9,9 @@ export class ConfigService {
         {name: 'product', url: 'product', active: false},
         {name: 'center', url: 'center', active: false},
         {name: 'table', url: 'table', active: false},
+    ];
+    settingNav = [
+        {name: '字段选项', url: '/setting/option', active: false},
     ]
     pageSize: number = 20;
     pageSizeOptions: number[] = [ 10, 20, 50, 100, 200, 500 ];

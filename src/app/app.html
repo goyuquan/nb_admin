@@ -15,16 +15,32 @@
 </mat-toolbar>
 
 <mat-sidenav-container  class="main-container">
+
   <mat-sidenav *ngIf="isLogin" #sidenav mode="side" [opened]="sidenavVisible" class="main-sidenav">
     <mat-nav-list>
       <h3 mat-subheader> Folders </h3>
+
       <mat-list-item *ngFor="let link of links"
-                    [routerLink]="link.url"
-                    routerLinkActive="active">
-        <span matLine >{{ link.name }}</span>
+          [routerLink]="link.url"
+          routerLinkActive="active">
+          <span matLine >{{ link.name }}</span>
       </mat-list-item>
-      <!-- <mat-list-item [routerLink]="[{ outlets: { popup: ['message'] } }]">Contact</mat-list-item> -->
+      
       <mat-divider></mat-divider>
+
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+              <mat-panel-title> 配置 </mat-panel-title>
+              <mat-panel-description> description </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-list-item *ngFor="let link of settingLinks"
+              [routerLink]="link.url"
+              routerLinkActive="active">
+              <span matLine >{{ link.name }}</span>
+          </mat-list-item>
+      </mat-expansion-panel>
+
+      <!-- <mat-list-item [routerLink]="[{ outlets: { popup: ['message'] } }]">Contact</mat-list-item> -->
     </mat-nav-list>
   </mat-sidenav>
   <router-outlet></router-outlet>

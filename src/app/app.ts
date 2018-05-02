@@ -22,6 +22,7 @@ export class App {
     sidenavVisible: boolean;
     userinfo: UserModel;
     links: any[];
+    settingLinks: any[];
     previousUrl: string;
     backAvailable: boolean;
 
@@ -34,6 +35,7 @@ export class App {
     ) {
         this.sidenavVisible = this.isLogin ? true : false;
         this.links = this.configService.nav;
+        this.settingLinks = this.configService.settingNav;
 
         this.router.events
         .filter(event => event instanceof NavigationEnd)

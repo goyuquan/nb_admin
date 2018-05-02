@@ -37,6 +37,7 @@ export class ProductDetail {
         .subscribe(data => {
             this.resolveData = data.product.data;
             for (let v in this.resolveData) {
+                if (v === 'options') continue;
                 let o = {};
                 o['value'] = (this.resolveData)[v];
                 o['name'] = v;

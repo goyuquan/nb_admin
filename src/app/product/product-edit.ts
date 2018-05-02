@@ -89,7 +89,7 @@ export class ProductEdit {
             '/api/product/edit/' + this.prodectResource['id'],
             this.productGroup.value
         ).subscribe(res => {
-            console.log(res);
+            this.router.navigate(['/product/' + this.prodectResource['id']]);
         });
     }
 

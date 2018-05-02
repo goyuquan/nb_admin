@@ -13,9 +13,10 @@ const appRoutes: Routes = [
   // { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule', canLoad: [AuthGuard] }, //只有在用户已登录的情况下我们才加载AdminModule
   { path: 'user', loadChildren: 'app/user/user.module#UserModule' }, //自定义预加载策略
   { path: 'order', loadChildren: 'app/order/order.module#OrderModule' },
-  { path: 'product', loadChildren: 'app/product/product.module#ProductModule' }, 
+  { path: 'product', loadChildren: 'app/product/product.module#ProductModule' },
   { path: 'center', loadChildren: 'app/center/center.module#CenterModule' },
   { path: 'table', loadChildren: 'app/mytable/mytable.module#MyTableModule' },
+  { path: 'setting', loadChildren: 'app/setting/setting.module#SettingModule' },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: NotFound }
 ];

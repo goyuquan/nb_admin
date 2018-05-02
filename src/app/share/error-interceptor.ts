@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 
 import { HttpService } from './http.service';
 import { AuthService } from '../auth/auth.service';
@@ -21,7 +22,9 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next
         .handle(req)
-        .catch((error, caught) => {
+        .do(() => {}, error => {
+            const token = error.headers.get('Authorization');
+            this.authService.setToken(token);
             this.httpService.loading = false;
 
             switch(error.status)
@@ -51,8 +54,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
                 case 422: //表单验证失败
                 {
-                    this.snackBar.open( error.error.message, 'close', { duration: 5000 });
-                    return [];
+                    for(let v in error.error) {
+                        this.snackBar.open( error.error[v], 'close', { duration: 5000 });
+                    }
+                    console.log('=============')
+                    return next.handle(req);
                 }
                 default:
                     return Observable.throw(error);

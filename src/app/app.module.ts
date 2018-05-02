@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { CachingInterceptor } from './share/caching-interceptor'; //TODO HTTP缓存拦截器
 import { HttpsInterceptor } from './share/http-interceptor'; //HTTP拦截器
-import { ResponseInterceptor } from './share/response-interceptor'; //HTTP响应拦截器
 import { ErrorInterceptor } from './share/error-interceptor'; //HTTP响应拦截器
+import { ResponseInterceptor } from './share/response-interceptor'; //HTTP响应拦截器
 
 
 import { App } from './app';
@@ -36,6 +36,7 @@ import {
   MatListModule,
   MatProgressBarModule,
   MatSnackBarModule,
+  MatExpansionModule,
 } from '@angular/material';
 
 import 'hammerjs';
@@ -60,6 +61,7 @@ import 'hammerjs';
     MatListModule,
     MatProgressBarModule,
     MatSnackBarModule,
+    MatExpansionModule,
 
     FormsModule,
 
@@ -74,21 +76,9 @@ import 'hammerjs';
     ErrorService,
     ConfigService,
     PatternService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpsInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ResponseInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true,
-    },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpsInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [ App ]
 })
