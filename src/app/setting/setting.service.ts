@@ -1,7 +1,7 @@
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
+
+
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 export class SettingModel {

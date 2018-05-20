@@ -15,6 +15,7 @@ export class Message {
 
   details: string;
   sending = false;
+  message = "this is meassge";
 
   constructor(private router: Router) {}
 

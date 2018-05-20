@@ -1,7 +1,9 @@
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/take';
+
+import {map} from 'rxjs/operators';
+
+
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
 import { MyTableModel, MyTableService } from './mytable.service';
@@ -14,15 +16,15 @@ export class MyTableResolver implements Resolve<MyTableModel> {
     let id = route.paramMap.get('id');
 
     return this.mytableservice
-      .getMyTable('/api/users/list')
-      .map(mytable => {
+      .getMyTable('/api/users/list').pipe(
+      map(mytable => {
         if (mytable) {
           return mytable;
         } else {
           this.router.navigate(['/table']);
           return null;
         }
-      });
+      }));
 
   }
 }

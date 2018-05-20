@@ -1,7 +1,9 @@
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/take';
+
+import {map} from 'rxjs/operators';
+
+
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
 import { HttpService } from '../share/http.service';
@@ -15,15 +17,15 @@ export class UserResolver implements Resolve<UserModel> {
     let id = route.paramMap.get('id');
 
     return this.httpService
-      .get('/api/users/list')
-      .map(user => {
+      .get('/api/users/list').pipe(
+      map(user => {
         if (user) {
           return user;
         } else {
           this.router.navigate(['/table']);
           return null;
         }
-      });
+      }));
 
   }
 }

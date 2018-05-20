@@ -1,8 +1,10 @@
+
+import {switchMap} from 'rxjs/operators';
 import { Component, HostBinding, OnInit, OnChanges } from '@angular/core';
 import { FormControl, FormGroup, FormArray, FormBuilder, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs';
+
 
 import { ErrorStateMatcher } from '@angular/material/core';
 
@@ -118,11 +120,11 @@ export class CenterList implements OnInit {
   }
 
   ngOnInit() {
-    this.center_list$ = this.route.paramMap
-      .switchMap((params: ParamMap) => {
+    this.center_list$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
         this.selectedId = +params.get('id');
         return this.service.getCenteres();
-      });
+      }));
   }
 
   onSubmit() {

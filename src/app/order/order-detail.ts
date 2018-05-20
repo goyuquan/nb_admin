@@ -1,7 +1,7 @@
 import { Component, HostBinding, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs';
+
 import { slideInDownAnimation } from '../animations';
 import { MatTableDataSource } from '@angular/material';
 

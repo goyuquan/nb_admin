@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
-import { Observable } from 'rxjs/Observable';
+
+import { Observable } from 'rxjs';
 
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 
@@ -23,7 +23,7 @@ export class User {
 
   constructor(
     private route: ActivatedRoute,
-    private config: ConfigService,
+    public config: ConfigService,
     private router: Router
   ) {}
 

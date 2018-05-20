@@ -1,8 +1,10 @@
+
+import {tap} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+
+
 import { HttpService } from './http.service';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
@@ -18,8 +20,8 @@ export class ResponseInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next
-        .handle(req)
-        .do(event => {
+        .handle(req).pipe(
+        tap(event => {
             if (event instanceof HttpResponse) {
                 this.httpService.loading = false;
                 //猎取响应头信息
@@ -27,6 +29,6 @@ export class ResponseInterceptor implements HttpInterceptor {
                 this.authService.setToken(token);
                 return next.handle(req) as any;
             }
-        });
+        }));
     }
 }

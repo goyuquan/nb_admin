@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { slideInDownAnimation } from '../animations';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { DialogService }  from '../dialog.service';
 import { Center } from './center.service';

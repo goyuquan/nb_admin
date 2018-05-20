@@ -1,7 +1,9 @@
+
+import {switchMap} from 'rxjs/operators';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
-import { Observable } from 'rxjs/Observable';
+
+import { Observable } from 'rxjs';
 import { slideInDownAnimation } from '../animations';
 
 import { DashboardModel, DashboardService } from './dashboard.service';
@@ -21,16 +23,16 @@ export class Dashboard {
 
     constructor(
         private service: DashboardService,
-        private route: ActivatedRoute,
+        public route: ActivatedRoute,
         private router: Router
     ) {}
 
     ngOnInit() {
-        this.dashboards$ = this.route.paramMap
-        .switchMap((params: ParamMap) => {
+        this.dashboards$ = this.route.paramMap.pipe(
+        switchMap((params: ParamMap) => {
             this.selectedId = +params.get('id');
             return this.service.getDashboardes();
-        });
+        }));
     }
 
     isSelected(dashboard: DashboardModel) { return dashboard.id === this.selectedId; }

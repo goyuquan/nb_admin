@@ -1,7 +1,9 @@
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/take';
+
+import {map} from 'rxjs/operators';
+
+
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
 import { HttpService } from '../share/http.service';
@@ -15,15 +17,15 @@ export class ProductListResolver implements Resolve<ProductModel> {
     let id = route.paramMap.get('id');
 
     return this.httpService
-      .get('/api/product/list')
-      .map(productList => {
+      .get('/api/product/list').pipe(
+      map(productList => {
         if (productList) {
           return productList;
         } else {
           this.router.navigate(['/dashboard']);
           return null;
         }
-      });
+      }));
 
   }
 }

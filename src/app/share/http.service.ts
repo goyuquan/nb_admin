@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
-import 'rxjs/add/operator/retry';
-import { Observable } from 'rxjs/Observable';
+
+import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 import { ErrorService } from './error.service';
 

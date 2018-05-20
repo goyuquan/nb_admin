@@ -1,10 +1,12 @@
+import {throwError as observableThrowError,  Observable } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
+
+
 
 import { HttpService } from './http.service';
 import { AuthService } from '../auth/auth.service';
@@ -21,8 +23,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next
-        .handle(req)
-        .do(() => {}, error => {
+        .handle(req).pipe(
+        tap(() => {}, error => {
             const token = error.headers.get('Authorization');
             this.authService.setToken(token);
             this.httpService.loading = false;
@@ -61,8 +63,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                     return next.handle(req);
                 }
                 default:
-                    return Observable.throw(error);
+                    return observableThrowError(error);
             }
-        });
+        }));
     }
 }

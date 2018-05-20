@@ -1,7 +1,9 @@
+
+import {map} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+
 import { SelectivePreloadingStrategy } from '../selective-preloading-strategy';
 
 @Component({
@@ -28,12 +30,12 @@ export class AdminDashboard implements OnInit {
   ngOnInit() {
     // Capture the session ID if available
     this.sessionId = this.route
-      .queryParamMap
-      .map(params => params.get('session_id') || 'None');
+      .queryParamMap.pipe(
+      map(params => params.get('session_id') || 'None'));
 
     // Capture the fragment if available
     this.token = this.route
-      .fragment
-      .map(fragment => fragment || 'None');
+      .fragment.pipe(
+      map(fragment => fragment || 'None'));
   }
 }

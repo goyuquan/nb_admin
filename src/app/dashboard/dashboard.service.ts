@@ -1,7 +1,7 @@
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
+
+
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 export class DashboardModel {
   constructor( public id: number, public name: string ) {}

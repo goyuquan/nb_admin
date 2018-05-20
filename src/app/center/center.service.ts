@@ -1,6 +1,8 @@
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+import {map} from 'rxjs/operators';
+
+
+import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 // import { Observable } from 'rxjs/Observable';
 
@@ -26,8 +28,8 @@ export class CenterService {
   getCenteres() { return this.center$; }
 
   getCenter(id: number | string) {
-    return this.getCenteres()
+    return this.getCenteres().pipe(
       // .then(centers => centers.find(center => center.id === +id));
-      .map(centers => centers.find(center => center.id === +id));
+      map(centers => centers.find(center => center.id === +id)));
   }
 }

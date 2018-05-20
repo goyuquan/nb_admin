@@ -1,9 +1,11 @@
+
+import {filter} from 'rxjs/operators';
 import { Component, ViewChild, Input, Output } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpService } from './share/http.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
-import 'rxjs/add/operator/filter';
+
 
 import { AuthService } from './auth/auth.service'
 import { ConfigService } from './share/config.service'
@@ -29,7 +31,7 @@ export class App {
     constructor (
         private httpService: HttpService,
         private authService: AuthService,
-        private configService: ConfigService,
+        public configService: ConfigService,
         private location: Location,
         public router: Router
     ) {
@@ -37,8 +39,8 @@ export class App {
         this.links = this.configService.nav;
         this.settingLinks = this.configService.settingNav;
 
-        this.router.events
-        .filter(event => event instanceof NavigationEnd)
+        this.router.events.pipe(
+        filter(event => event instanceof NavigationEnd))
         .subscribe(e => {
             if (this.configService.unAuthenticatedPages.indexOf(this.previousUrl) === -1) {
                 this.backAvailable = true;
