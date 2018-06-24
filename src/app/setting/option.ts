@@ -15,15 +15,7 @@ import { SettingModel } from './setting.model';
 })
 export class Option {
     displayedColumns = [
-        'id',
-        'user_id',
-        'contact_id',
-        'status',
-        'period',
-        'delivery_time',
-        'created_at',
-        'updated_at',
-        'detail',
+        'name',
     ];
     dataSource: MatTableDataSource<Element>;
 
@@ -37,11 +29,11 @@ export class Option {
     ) {}
 
     ngOnInit() {
-
-        // this.route.data
-        // .subscribe(data => {
-        //     this.dataSource = new MatTableDataSource<Element>(data.options.data);
-        // });
+        this.route.data
+        .subscribe(data => {
+            console.log('data is ', data)
+            this.dataSource = new MatTableDataSource<Element>(data.options.data);
+        });
     }
 
 

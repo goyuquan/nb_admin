@@ -8,59 +8,59 @@
     </mat-form-field>
   </div>
 
-  <mat-table #table [dataSource]="dataSource" matSort  class="order-table">
+  <mat-table #table [dataSource]="dataSource" matSort class="order-table">
 
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
     </ng-container>
 
     <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.status}} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let row"> {{row.status}} </td>
     </ng-container>
 
     <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
     </ng-container>
 
     <ng-container matColumnDef="price">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+      <td mat-cell *matCellDef="let row"> {{row.price}} </td>
     </ng-container>
 
     <ng-container matColumnDef="unit">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Unit </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.unit}} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit </th>
+      <td mat-cell *matCellDef="let row"> {{row.unit}} </td>
     </ng-container>
 
     <ng-container matColumnDef="origin">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Origin </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.origin}} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Origin </th>
+      <td mat-cell *matCellDef="let row"> {{row.origin}} </td>
     </ng-container>
 
     <ng-container matColumnDef="created_at">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Created_at </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.created_at | date:'yyyy-MM-dd'}} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Created_at </th>
+      <td mat-cell *matCellDef="let row"> {{row.created_at | date:'yyyy-MM-dd'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="updated_at">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Updated_at </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.updated_at | date:'yyyy-MM-dd'}} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated_at </th>
+      <td mat-cell *matCellDef="let row"> {{row.updated_at | date:'yyyy-MM-dd'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="detail">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> detail </mat-header-cell>
-        <mat-cell *matCellDef="let row">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> detail </th>
+        <td mat-cell *matCellDef="let row">
             <button mat-mini-fab color="primary">
                 <mat-icon routerLink="/product/{{row.id}}">forward</mat-icon>
             </button>
-        </mat-cell>
+        </td>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   </mat-table>
 

@@ -19,14 +19,14 @@ const settingeRoute: Routes = [
             {
                 path: 'option',
                 component: Option,
-                // resolve: { setting: SettingDetailResolver }
+                resolve: { options: SettingListResolver }
             },
             {
                 path: '/settingdetail',
                 component: SettingDetail,
                 // resolve: { setting: SettingDetailResolver }
             },
-            { path: '',  component: Setting }
+            { path: '',  redirectTo: Option }
         ]
     }
 ];

@@ -17,10 +17,10 @@ export class SettingListResolver implements Resolve<SettingModel> {
     let id = route.paramMap.get('id');
 
     return this.httpService
-      .get('/api/order/list').pipe(
-      map(settingList => {
-        if (settingList) {
-          return settingList;
+      .get('/api/option').pipe(
+      map(data => {
+        if (data) {
+          return data;
         } else {
           this.router.navigate(['/dashboard']);
           return null;
