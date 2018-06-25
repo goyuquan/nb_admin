@@ -1,5 +1,6 @@
 <h1>Option</h1>
 
+<h1>title</h1>
 <div class="table-container mat-elevation-z8">
 
   <div class="table-header">
@@ -8,7 +9,7 @@
     </mat-form-field>
   </div>
 
-  <table mat-table [dataSource]="dataSource" matSort class="order-table">
+  <table mat-table #table [dataSource]="dataSource" matSort class="order-table">
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>

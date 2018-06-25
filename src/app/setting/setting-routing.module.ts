@@ -14,19 +14,19 @@ const settingeRoute: Routes = [
     {
         path: '',
         canActivate: [ AuthGuard ],
-        // resolve: { settings: SettingListResolver },
+        resolve: { options: SettingListResolver },
         children: [
             {
                 path: 'option',
                 component: Option,
-                resolve: { options: SettingListResolver }
+                // resolve: { options: SettingListResolver }
             },
             {
                 path: '/settingdetail',
                 component: SettingDetail,
                 // resolve: { setting: SettingDetailResolver }
             },
-            { path: '',  redirectTo: Option }
+            { path: '',  component: Option }
         ]
     }
 ];

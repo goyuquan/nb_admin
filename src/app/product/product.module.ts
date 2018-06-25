@@ -4,15 +4,15 @@ import { FormsModule }    from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import {
-    MatSelectModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
     MatButtonModule,
-    MatDividerModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule,
+    MatDividerModule,
 } from '@angular/material';
 
 import { Product }    from './product';

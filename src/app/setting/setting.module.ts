@@ -1,16 +1,19 @@
 import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { FormsModule }    from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import {
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
   MatInputModule,
+  MatButtonModule,
   MatTabsModule,
   MatCardModule,
-  MatButtonModule,
-  MatIconModule
+  MatIconModule,
+  MatSelectModule,
+  MatDividerModule,
 } from '@angular/material';
 
 import { Setting }    from './setting';
@@ -32,7 +35,9 @@ import { SettingRoutingModule } from './setting-routing.module';
     MatTabsModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule,
+    MatDividerModule,
   ],
   declarations: [
     Setting,
