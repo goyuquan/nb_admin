@@ -14,10 +14,11 @@ const settingRoute: Routes = [
     // component: Setting,
     resolve: { setting: SettingResolver },
     children: [
-      // {
-      //     path: 'option',
-      //     component: Option,
-      // },
+      {
+          path: 'option',
+          component: Option,
+          resolve: { setting: SettingResolver },
+      },
       { path: '',  component: Option }
     ]
   }
