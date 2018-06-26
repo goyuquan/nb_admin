@@ -1,4 +1,3 @@
-
 import {filter} from 'rxjs/operators';
 import { Component, ViewChild, Input, Output } from '@angular/core';
 import { Location } from '@angular/common';
@@ -49,6 +48,10 @@ export class App {
             }
             this.previousUrl = e['url'];
         });
+    }
+
+    ngOnInit() {
+      document.body.removeChild(document.getElementById('loader'));
     }
 
     ngDoCheck() {
