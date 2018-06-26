@@ -5,42 +5,33 @@ import { AuthGuard } from '../auth/auth-guard.service';
 
 import { Setting } from './setting';
 import { Option } from './option';
-import { SettingDetail } from './setting-detail';
+import { SettingResolver } from './setting-resolver.service';
 
-import { SettingListResolver } from './setting-list-resolver.service';
-import { SettingDetailResolver } from './setting-detail-resolver.service';
-
-const settingeRoute: Routes = [
-    {
-        path: '',
-        canActivate: [ AuthGuard ],
-        resolve: { options: SettingListResolver },
-        children: [
-            {
-                path: 'option',
-                component: Option,
-                // resolve: { options: SettingListResolver }
-            },
-            {
-                path: '/settingdetail',
-                component: SettingDetail,
-                // resolve: { setting: SettingDetailResolver }
-            },
-            { path: '',  component: Option }
-        ]
-    }
+const settingRoute: Routes = [
+  {
+    path: '',
+    canActivate: [ AuthGuard ],
+    // component: Setting,
+    resolve: { setting: SettingResolver },
+    children: [
+      // {
+      //     path: 'option',
+      //     component: Option,
+      // },
+      { path: '',  component: Option }
+    ]
+  }
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forChild(settingeRoute)
-    ],
-    providers: [
-        SettingListResolver,
-        SettingDetailResolver
-    ],
-    exports: [
-        RouterModule
-    ]
+  imports: [
+    RouterModule.forChild(settingRoute)
+  ],
+  providers: [
+      SettingResolver
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class SettingRoutingModule {}

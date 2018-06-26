@@ -1,43 +1,33 @@
-<h1>Setting</h1>
+<h1>USER</h1>
 
 <div class="table-container mat-elevation-z8">
 
   <div class="table-header">
-    <mat-form-field>
+    <mat-form-field class="mat-form-field-table-filter">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
 
-  <mat-table #table [dataSource]="dataSource" matSort  class="order-table">
+  <mat-table #table [dataSource]="dataSource" matSort  class="user-table">
 
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="user_id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> User_id </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.user_id}} </mat-cell>
+    <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.phone}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="contact_id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Contact_id </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.contact_id}} </mat-cell>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.status}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="period">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Period </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.period}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="delivery_time">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Delivery_time </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.delivery_time}} </mat-cell>
+    <ng-container matColumnDef="role">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.role}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="created_at">
@@ -50,23 +40,14 @@
       <mat-cell *matCellDef="let row"> {{row.updated_at | date:'yyyy-MM-dd'}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="detail">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> detail </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-            <button mat-mini-fab color="primary">
-                <mat-icon routerLink="/order/{{row.id}}">forward</mat-icon>
-            </button>
-        </mat-cell>
-    </ng-container>
-
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
   </mat-table>
 
   <mat-paginator #paginator
-                 [pageSize]="config.pageSize"
-                 [pageSizeOptions]="config.pageSizeOptions"
+                  [pageSize]="config.pageSize"
+                  [pageSizeOptions]="config.pageSizeOptions"
                  [showFirstLastButtons]="true">
   </mat-paginator>
 </div>
