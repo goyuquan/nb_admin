@@ -10,12 +10,11 @@ import { SettingModel } from './setting.model';
 import { ConfigService } from '../share/config.service';
 
 @Component({
-  selector: 'option',
   templateUrl: './option.html',
   styleUrls: ['./option.scss'],
 })
 export class Option {
-  displayedColumns = ['id', 'phone', 'name', 'role', 'created_at', 'updated_at'];
+  displayedColumns = ['name'];
   dataSource: MatTableDataSource<Element>;
 
   @ViewChild(MatSort) sort: MatSort;
@@ -30,7 +29,7 @@ export class Option {
   ngOnInit() {
     this.route.data
     .subscribe(data => {
-      this.dataSource = new MatTableDataSource<Element>(data.setting.data);
+      this.dataSource = new MatTableDataSource<Element>(data.options.data);
     });
   }
 

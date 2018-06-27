@@ -10,7 +10,6 @@ import { UserModel } from './user.model';
 import { ConfigService } from '../share/config.service';
 
 @Component({
-  selector: 'user',
   templateUrl: './user.html',
   styleUrls: ['./user.scss'],
 })
@@ -30,6 +29,7 @@ export class User {
   ngOnInit() {
     this.route.data
     .subscribe(data => {
+      console.log(data)
       this.dataSource = new MatTableDataSource<Element>(data.user.data);
     });
   }

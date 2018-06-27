@@ -11,15 +11,14 @@ const settingRoute: Routes = [
   {
     path: '',
     canActivate: [ AuthGuard ],
-    // component: Setting,
-    resolve: { setting: SettingResolver },
+    component: Setting,
     children: [
       {
           path: 'option',
           component: Option,
-          resolve: { setting: SettingResolver },
+          resolve: { options: SettingResolver },
       },
-      { path: '',  component: Option }
+      { path: '',  redirectTo: 'option' }
     ]
   }
 ];
