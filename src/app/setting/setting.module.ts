@@ -10,7 +10,8 @@ import {
 } from '@angular/material';
 
 import { Setting }    from './setting';
-import { Option }    from './option';
+import { Option }    from './option/option';
+import { OptionConfig }    from './option/option-config';
 
 import { SettingService } from './setting.service';
 import { SettingRoutingModule } from './setting-routing.module';
@@ -28,6 +29,7 @@ import { SettingRoutingModule } from './setting-routing.module';
   declarations: [
     Setting,
     Option,
+    OptionConfig,
   ],
   providers: [ SettingService ]
 })
