@@ -4,8 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth-guard.service';
 
 import { Setting } from './setting';
-import { Option } from './option';
-import { SettingResolver } from './setting-resolver.service';
+import { Option } from './option/option';
+import { OptionConfig } from './option/option-config';
+import { OptionResolver } from './option/option-resolver.service';
+import { OptionConfigResolver } from './option/option-config-resolver.service';
 
 const settingRoute: Routes = [
   {
@@ -16,7 +18,12 @@ const settingRoute: Routes = [
       {
           path: 'option',
           component: Option,
-          resolve: { options: SettingResolver },
+          resolve: { options: OptionResolver },
+      },
+      {
+          path: 'option/:id',
+          component: OptionConfig,
+          resolve: { options: OptionConfigResolver },
       },
       { path: '',  redirectTo: 'option' }
     ]
@@ -28,7 +35,8 @@ const settingRoute: Routes = [
     RouterModule.forChild(settingRoute)
   ],
   providers: [
-      SettingResolver
+      OptionResolver,
+      OptionConfigResolver
   ],
   exports: [
     RouterModule

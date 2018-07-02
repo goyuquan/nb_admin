@@ -5,16 +5,15 @@ import { Observable } from 'rxjs';
 
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 
-import { SettingService } from './setting.service';
-import { SettingModel } from './setting.model';
-import { ConfigService } from '../share/config.service';
+import { SettingService } from '../setting.service';
+import { ConfigService } from '../../share/config.service';
 
 @Component({
   templateUrl: './option.html',
   styleUrls: ['./option.scss'],
 })
 export class Option {
-  displayedColumns = ['name'];
+  displayedColumns = ['name', 'config'];
   dataSource: MatTableDataSource<Element>;
 
   @ViewChild(MatSort) sort: MatSort;
