@@ -15,7 +15,7 @@ import { ConfigService } from '../../share/config.service';
 export class OptionConfig {
   displayedColumns = ['name'];
   dataSource: MatTableDataSource<Element>;
-
+  title: ''
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -26,6 +26,7 @@ export class OptionConfig {
   ) {}
 
   ngOnInit() {
+    this.title = this.route.params.value.id
     this.route.data
     .subscribe(data => {
       this.dataSource = new MatTableDataSource<Element>(data.options.data);

@@ -7,6 +7,7 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatInputModule,
+  MatCardModule,
 } from '@angular/material';
 
 import { Setting }    from './setting';
@@ -25,6 +26,7 @@ import { SettingRoutingModule } from './setting-routing.module';
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
+    MatCardModule,
   ],
   declarations: [
     Setting,
