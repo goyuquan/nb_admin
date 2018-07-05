@@ -14,7 +14,7 @@ export class OptionConfigResolver implements Resolve<any> {
     let id = route.paramMap['params'].id;
 
     return this.httpService
-      .get('/api/setting/option').pipe(
+      .get('/api/setting/option/config/' + id).pipe(
       map(option => {
         if (option) {
           return option;

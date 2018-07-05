@@ -8,6 +8,7 @@ import {
   MatSortModule,
   MatInputModule,
   MatCardModule,
+  MatDialogModule,
 } from '@angular/material';
 
 import { Setting }    from './setting';
@@ -27,6 +28,7 @@ import { SettingRoutingModule } from './setting-routing.module';
     MatSortModule,
     MatInputModule,
     MatCardModule,
+    MatDialogModule,
   ],
   declarations: [
     Setting,

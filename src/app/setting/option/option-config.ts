@@ -26,7 +26,7 @@ export class OptionConfig {
   ) {}
 
   ngOnInit() {
-    this.title = this.route.params.value.id
+    // this.title = this.route.params.value.id
     this.route.data
     .subscribe(data => {
       this.dataSource = new MatTableDataSource<Element>(data.options.data);
