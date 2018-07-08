@@ -45,7 +45,7 @@ import 'hammerjs';
   declarations: [
     App,
     Message,
-    NotFound
+    NotFound,
   ],
   imports: [
     BrowserModule,

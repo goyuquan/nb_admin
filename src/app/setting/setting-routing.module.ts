@@ -16,14 +16,14 @@ const settingRoute: Routes = [
     component: Setting,
     children: [
       {
-          path: 'option',
-          component: Option,
-          resolve: { options: OptionResolver },
+        path: 'option',
+        component: Option,
+        resolve: { options: OptionResolver },
       },
       {
-          path: 'option/:id',
-          component: OptionConfig,
-          resolve: { options: OptionConfigResolver },
+        path: 'option/:id',
+        component: OptionConfig,
+        resolve: { options: OptionConfigResolver },
       },
       { path: '',  redirectTo: 'option' }
     ]
@@ -35,8 +35,8 @@ const settingRoute: Routes = [
     RouterModule.forChild(settingRoute)
   ],
   providers: [
-      OptionResolver,
-      OptionConfigResolver
+    OptionResolver,
+    OptionConfigResolver
   ],
   exports: [
     RouterModule

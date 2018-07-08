@@ -1,6 +1,8 @@
 <h1>OPTION Config [{{title}}]</h1>
 
-<mat-card>Simple card</mat-card> <br>
+<mat-card>
+  <button mat-raised-button color="primary" (click)="onCreate()">添加</button>
+</mat-card> <br>
 
 <div class="table-container mat-elevation-z8">
 
@@ -10,11 +12,11 @@
     </mat-form-field>
   </div>
 
-  <table mat-table #table [dataSource]="dataSource" matSort  class="user-table">
+  <table mat-table #table [dataSource]="dataSource" matSort class="user-table">
 
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>
-        <td mat-cell *matCellDef="let row"> {{row.COLUMN_NAME}} </td>
+    <ng-container matColumnDef="option">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> option </th>
+      <td mat-cell *matCellDef="let row"> {{row.option}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -23,8 +25,7 @@
   </table>
 
   <mat-paginator #paginator
-                  [pageSize]="config.pageSize"
-                  [pageSizeOptions]="config.pageSizeOptions"
-                 [showFirstLastButtons]="true">
-  </mat-paginator>
+  [pageSize]="config.pageSize"
+  [pageSizeOptions]="config.pageSizeOptions"
+  [showFirstLastButtons]="true"> </mat-paginator>
 </div>

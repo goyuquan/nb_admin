@@ -1,0 +1,18 @@
+<h2>添加项目</h2>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+  <mat-form-field class="mat-form-field-block">
+    <input matInput placeholder="名称"
+          formControlName="option"
+          [errorStateMatcher]="matcher">
+    <mat-hint>验证通过!</mat-hint>
+    <mat-error *ngIf="formGroup.get('option').hasError('required')">
+      名称 <strong>必填</strong>
+    </mat-error>
+  </mat-form-field><br><br>
+
+  <div class="space-between">
+    <span></span>
+    <button mat-raised-button color="accent" (click)="onSubmit()">添加</button>
+  </div>
+</form>
