@@ -60,7 +60,7 @@ export class OptionConfig {
   onCreate() {
     const dialogRef = this.dialog.open(OptionCreateDialog, {
       width: '300px',
-      data: { value: this.option }
+      data: { value: this.title }
     });
   }
 
@@ -74,28 +74,29 @@ export class OptionConfig {
   templateUrl: 'option-create-dialog.html',
 })
 export class OptionCreateDialog {
-  option: string | number
-  formGroup: FormGroup
+  column: string | number
+  optionGroup: FormGroup
 
   constructor(
     public dialogRef: MatDialogRef<OptionCreateDialog>,
     @Inject(MAT_DIALOG_DATA) public data,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private settingService: SettingService,
   ) {
-    this.option = data.value
+    this.column = data.value
     this.createForm()
     this.initForm()
   }
 
   createForm() {
-    this.formGroup = this.fb.group({
-      option: [ '', [ Validators.required ] ],
+    this.optionGroup = this.fb.group({
+      item: [ '', [ Validators.required ] ],
     });
   }
 
   initForm() {
-    this.formGroup.patchValue({//初始整个表单值
-      option: this.option,
+    this.optionGroup.patchValue({//初始整个表单值
+      item: '',
     });
   }
 
@@ -104,7 +105,15 @@ export class OptionCreateDialog {
   }
 
   onSubmit() {
-
+    this.settingService.optionCreate(
+        '/api/setting/option/create',
+        {
+          column: this.column,
+          option: this.optionGroup.value.item,
+        }
+    ).subscribe(res => {
+        console.log(44446666, res)
+    });
   }
 
 }
