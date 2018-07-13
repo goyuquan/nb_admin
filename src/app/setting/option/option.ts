@@ -13,7 +13,7 @@ import { ConfigService } from '../../share/config.service';
   styleUrls: ['./option.scss'],
 })
 export class Option {
-  displayedColumns = ['name', 'config'];
+  displayedColumns = ['name', 'item', 'config'];
   dataSource: MatTableDataSource<Element>;
 
   @ViewChild(MatSort) sort: MatSort;
@@ -28,7 +28,8 @@ export class Option {
   ngOnInit() {
     this.route.data
     .subscribe(data => {
-      this.dataSource = new MatTableDataSource<Element>(data.options.data);
+      console.log(4444444444444444, data)
+      this.dataSource = new MatTableDataSource<Element>(data.options.data.columns);
     });
   }
 
