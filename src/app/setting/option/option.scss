@@ -5,3 +5,8 @@
 table {
   width: 100%;
 }
+
+.mat-sort-header-container { //表头文字居中
+  display: flex;
+  justify-content: center;
+}

@@ -44,6 +44,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                     this.snackBar.open( error.error.message, 'close', { duration: 5000 });
                     return [];
                 }
+                case 404: //找不到资源
+                {
+                    this.snackBar.open( error.error.message, 'close', { duration: 5000 });
+                    return [];
+                }
                 case 419: //令牌过期
                 {
                     return this.authService.updateToken().flatMap(
@@ -63,6 +68,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                     return next.handle(req);
                 }
                 default:
+                    this.snackBar.open( error.error.message, 'close', { duration: 5000 });
                     return observableThrowError(error);
             }
         }));

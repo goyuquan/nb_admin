@@ -22,7 +22,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./option-config.scss'],
 })
 export class OptionConfig {
-  displayedColumns = ['option']
+  displayedColumns = ['option', 'config']
   dataSource: MatTableDataSource<Element>
   title: ''
   option: string | number = 'temp'
@@ -35,6 +35,7 @@ export class OptionConfig {
     private route: ActivatedRoute,
     public config: ConfigService,
     public dialog: MatDialog,
+    private settingService: SettingService,
     private router: Router
   ) {}
 
@@ -66,6 +67,31 @@ export class OptionConfig {
 
   onSubmit() {
 
+  }
+
+  onDelete(id) {
+    this.settingService.optionDelete(
+      '/api/setting/option/item/' + id
+    ).subscribe(res => {
+      console.log(44446666, res)
+    });
+  }
+
+  onUpdateOpen(id) {
+    this.settingService.optionGet(id).subscribe(res => {
+      console.log(44446777, res)
+    });
+  }
+
+  onUpdate(id) {
+    this.settingService.optionUpdate(
+      '/api/setting/option/item/',
+      {
+        url: 234324
+      }
+    ).subscribe(res => {
+      console.log(44446777, res)
+    });
   }
 
 }
@@ -106,7 +132,7 @@ export class OptionCreateDialog {
 
   onSubmit() {
     this.settingService.optionCreate(
-        '/api/setting/option/create',
+        '/api/setting/option/item',
         {
           column: this.column,
           option: this.optionGroup.value.item,

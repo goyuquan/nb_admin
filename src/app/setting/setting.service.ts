@@ -14,4 +14,16 @@ export class SettingService {
     return this.http.post(url, param);
   }
 
+  optionDelete(url): Observable<any> {
+    return this.http.delete(url);
+  }
+
+  optionUpdate(url, param): Observable<any> {
+    return this.http.put(url, param);
+  }
+
+  optionGet(id): Observable<any> {
+    return this.http.get('/api/setting/option/item/' + id);
+  }
+
 }
