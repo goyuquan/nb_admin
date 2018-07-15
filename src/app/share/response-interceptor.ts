@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { MatSnackBar } from '@angular/material';
 
 import { HttpService } from './http.service';
 import { AuthService } from '../auth/auth.service';
@@ -15,6 +16,7 @@ export class ResponseInterceptor implements HttpInterceptor {
     constructor(
         private httpService: HttpService,
         private authService: AuthService,
+        public snackBar: MatSnackBar,
         public router: Router
     ) {}
 
@@ -27,6 +29,9 @@ export class ResponseInterceptor implements HttpInterceptor {
                 //猎取响应头信息
                 const token = event.headers.get('Authorization');
                 this.authService.setToken(token);
+                if (event.body.bar) {
+                  this.snackBar.open( '操作成功', 'close', { duration: 1000, verticalPosition: 'top' });
+                }
                 return next.handle(req) as any;
             }
         }));

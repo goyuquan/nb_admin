@@ -28,7 +28,6 @@ export class Option {
   ngOnInit() {
     this.route.data
     .subscribe(data => {
-      console.log(4444444444444444, data)
       this.dataSource = new MatTableDataSource<Element>(data.options.data.columns);
     });
   }

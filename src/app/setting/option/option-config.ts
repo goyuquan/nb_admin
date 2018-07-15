@@ -24,7 +24,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class OptionConfig {
   displayedColumns = ['option', 'config']
   dataSource: MatTableDataSource<Element>
-  title: ''
+  column: ''
   option: string | number = 'temp'
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
@@ -40,11 +40,18 @@ export class OptionConfig {
   ) {}
 
   ngOnInit() {
-    this.title = this.route.params['value'].id
+    this.column = this.route.params['value'].id
     this.route.data
     .subscribe(data => {
       this.dataSource = new MatTableDataSource<Element>(data.options.data)
     });
+  }
+
+  fetch() {
+    this.settingService.optionConfig(this.column).subscribe(res => {
+      console.log(44445555, res.data)
+      this.dataSource = new MatTableDataSource<Element>(res.data)
+    })
   }
 
   ngAfterViewInit() {
@@ -58,58 +65,56 @@ export class OptionConfig {
     this.dataSource.filter = filterValue
   }
 
-  onCreate() {
-    const dialogRef = this.dialog.open(OptionCreateDialog, {
+  onCreateOpen() {
+    const dialogRef = this.dialog.open(OptionDialog, {
       width: '300px',
-      data: { value: this.title }
+      data: { title: '添加', column: this.column }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.fetch()
     });
   }
 
-  onSubmit() {
-
-  }
-
   onDelete(id) {
-    this.settingService.optionDelete(
-      '/api/setting/option/item/' + id
-    ).subscribe(res => {
-      console.log(44446666, res)
+    this.settingService.optionDelete(id).subscribe(res => {
+      this.fetch()
     });
   }
 
   onUpdateOpen(id) {
     this.settingService.optionGet(id).subscribe(res => {
-      console.log(44446777, res)
-    });
-  }
-
-  onUpdate(id) {
-    this.settingService.optionUpdate(
-      '/api/setting/option/item/',
-      {
-        url: 234324
-      }
-    ).subscribe(res => {
-      console.log(44446777, res)
-    });
+      const dialogRef = this.dialog.open(OptionDialog, {
+        width: '300px',
+        data: { title: '修改', value: res.data.option, id }
+      })
+      dialogRef.afterClosed().subscribe(result => {
+        this.fetch()
+      });
+    })
   }
 
 }
 
 @Component({
-  templateUrl: 'option-create-dialog.html',
+  templateUrl: 'option-dialog.html',
 })
-export class OptionCreateDialog {
-  column: string | number
+export class OptionDialog {
+  id
+  column
+  title
+  option = ''
   optionGroup: FormGroup
 
   constructor(
-    public dialogRef: MatDialogRef<OptionCreateDialog>,
+    public dialogRef: MatDialogRef<OptionDialog>,
     @Inject(MAT_DIALOG_DATA) public data,
     private fb: FormBuilder,
     private settingService: SettingService,
   ) {
-    this.column = data.value
+    this.id = data.id
+    this.title = data.title
+    this.column = data.column
+    this.option = data.value
     this.createForm()
     this.initForm()
   }
@@ -117,29 +122,40 @@ export class OptionCreateDialog {
   createForm() {
     this.optionGroup = this.fb.group({
       item: [ '', [ Validators.required ] ],
-    });
+    })
   }
 
   initForm() {
     this.optionGroup.patchValue({//初始整个表单值
-      item: '',
-    });
+      item: this.option,
+    })
   }
 
   onNoClick(): void {
     this.dialogRef.close()
   }
 
-  onSubmit() {
+  onCreate() {
     this.settingService.optionCreate(
-        '/api/setting/option/item',
-        {
-          column: this.column,
-          option: this.optionGroup.value.item,
-        }
+      {
+        column: this.column,
+        option: this.optionGroup.value.item,
+      }
     ).subscribe(res => {
-        console.log(44446666, res)
+      this.dialogRef.close(OptionDialog)
     });
+  }
+
+  onUpdate() {
+    this.settingService.optionUpdate(
+      this.id,
+      {
+        column: this.column,
+        option: this.optionGroup.value.item,
+      }
+    ).subscribe(res => {
+      this.dialogRef.close(OptionDialog)
+    })
   }
 
 }

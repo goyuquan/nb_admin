@@ -15,7 +15,7 @@ import {
 
 import { Setting }    from './setting';
 import { Option }    from './option/option';
-import { OptionConfig, OptionCreateDialog } from './option/option-config';
+import { OptionConfig, OptionDialog } from './option/option-config';
 
 import { SettingService } from './setting.service';
 import { SettingRoutingModule } from './setting-routing.module';
@@ -39,10 +39,10 @@ import { SettingRoutingModule } from './setting-routing.module';
     Setting,
     Option,
     OptionConfig,
-    OptionCreateDialog,
+    OptionDialog,
   ],
   entryComponents: [
-    OptionCreateDialog,
+    OptionDialog,
   ],
   providers: [ SettingService ]
 })

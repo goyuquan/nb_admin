@@ -1,4 +1,4 @@
-<h2>添加项目</h2>
+<h2>{{title}}项目</h2>
 
 <form [formGroup]="optionGroup">
   <mat-form-field class="mat-form-field-block">
@@ -13,6 +13,7 @@
 
   <div class="space-between">
     <span></span>
-    <button mat-raised-button color="accent" (click)="onSubmit()">添加</button>
+    <button mat-raised-button color="accent" *ngIf="title === '添加'" (click)="onCreate()">{{title}}</button>
+    <button mat-raised-button color="accent" *ngIf="title === '修改'" (click)="onUpdate()">{{title}}</button>
   </div>
 </form>

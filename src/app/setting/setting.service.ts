@@ -6,20 +6,20 @@ import { HttpClient } from '@angular/common/http';
 export class SettingService {
   constructor( private http: HttpClient ) {}
 
-  getSetting(url): Observable<any> {
-    return this.http.get( url )
+  optionConfig(url): Observable<any> {
+    return this.http.get('/api/setting/option/config/' + url)
   }
 
-  optionCreate(url, param): Observable<any> {
-    return this.http.post(url, param);
+  optionCreate(param): Observable<any> {
+    return this.http.post('/api/setting/option/item', param);
   }
 
   optionDelete(url): Observable<any> {
-    return this.http.delete(url);
+    return this.http.delete('/api/setting/option/item/' + url);
   }
 
   optionUpdate(url, param): Observable<any> {
-    return this.http.put(url, param);
+    return this.http.put('/api/setting/option/item/' + url, param);
   }
 
   optionGet(id): Observable<any> {
