@@ -39,7 +39,6 @@ export class Product {
     ngOnInit() {
         this.route.data
         .subscribe(data => {
-            console.log(data)
             this.dataSource = new MatTableDataSource<Element>(data.products.data);
         });
     }

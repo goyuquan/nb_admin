@@ -41,7 +41,7 @@ export class OrderDetail {
                 o['name'] = v;
                 order.push(o);
             }
-            console.log(order);
+            
             this.dataSource = new MatTableDataSource<Element>(order);
         });
     }

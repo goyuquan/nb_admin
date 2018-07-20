@@ -59,7 +59,6 @@ export class ProductEdit {
     }
 
     ngOnInit() {
-        console.log(this.route.snapshot.paramMap['params']);
         this.prodectResource = this.route.snapshot.paramMap['params'];
 
         // this.route.params
