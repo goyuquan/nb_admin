@@ -129,7 +129,6 @@ export class CenterList implements OnInit {
 
   onSubmit() {
     this.centers = this.prepareSaveCenters();
-    console.log('submit data : ', this.centers);
     this.ngOnChanges();
   }
 
@@ -139,8 +138,6 @@ export class CenterList implements OnInit {
     const secretLairsDeepCopy: Address[] = formModel.secretLairs.map(
       (address: Address) => Object.assign({}, address)
     );
-
-    console.log('secretLairsDeepCopy submit data : ', secretLairsDeepCopy);
 
     const saveCenter: any = {
       email: formModel.email as string,

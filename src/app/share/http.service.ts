@@ -37,7 +37,6 @@ export class HttpService {
             const percentDone = Math.round(100 * event.loaded / event.total);
             this.snackBar.open(`File is ${percentDone}% uploaded.`, null);
         } else if (event instanceof HttpResponse) {
-            console.log('File is completely uploaded!');
             this.snackBar.open(`File is completely uploaded!`, null, { duration: 5000 });
         }
     });

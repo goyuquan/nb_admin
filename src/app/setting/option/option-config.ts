@@ -49,7 +49,6 @@ export class OptionConfig {
 
   fetch() {
     this.settingService.optionConfig(this.column).subscribe(res => {
-      console.log(44445555, res.data)
       this.dataSource = new MatTableDataSource<Element>(res.data)
     })
   }
