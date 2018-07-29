@@ -10,6 +10,7 @@ import { AuthGuard } from './auth/auth-guard.service';
 
 const appRoutes: Routes = [
   { path: 'message', component: Message, outlet: 'popup' },
+  { path: 'cross', loadChildren: 'app/cross/cross.module#CrossModule', outlet: 'popup' }, //快捷操作模块
   // { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule', canLoad: [AuthGuard] }, //只有在用户已登录的情况下我们才加载AdminModule
   { path: 'user', loadChildren: 'app/user/user.module#UserModule' }, //自定义预加载策略
   { path: 'order', loadChildren: 'app/order/order.module#OrderModule' },

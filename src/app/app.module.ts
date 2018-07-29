@@ -9,7 +9,6 @@ import { HttpsInterceptor } from './share/http-interceptor'; //HTTP拦截器
 import { ErrorInterceptor } from './share/error-interceptor'; //HTTP响应拦截器
 import { ResponseInterceptor } from './share/response-interceptor'; //HTTP响应拦截器
 
-
 import { App } from './app';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -18,7 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { Message } from './message';
 import { NotFound } from './not-found';
 
-import { InitService } from './init.service';
+import { InitService } from './share/init.service';
 import { AuthService } from './auth/auth.service';
 import { DialogService } from './dialog.service';
 import { HttpService } from './share/http.service';

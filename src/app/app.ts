@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 
 
-import { InitService } from './init.service'
+import { InitService } from './share/init.service'
 import { AuthService } from './auth/auth.service'
 import { ConfigService } from './share/config.service'
 
