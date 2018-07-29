@@ -19,6 +19,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 @Component({
     templateUrl: './create.html',
+    styleUrls: ['./create.scss'],
 })
 export class ProductCreate {
   productGroup: FormGroup;
@@ -47,6 +48,7 @@ export class ProductCreate {
       private router: Router,
       private fb: FormBuilder,
       private productService: ProductService,
+      private configService: ConfigService,
       private patternService: PatternService
   ) {
       this.createForm();
@@ -57,19 +59,20 @@ export class ProductCreate {
   }
 
   ngOnInit() {
-      this.prodectResource = this.route.snapshot.paramMap['params'];
+    console.log('configService is ', this.configService.options)  
+    this.prodectResource = this.route.snapshot.paramMap['params'];
   }
 
   createForm() {
       this.productGroup = this.fb.group({
-          name: [ 'gyftiohiu', [ Validators.required ]],
+          name: [ 'name', [ Validators.required ]],
           price: [ '', [
               Validators.required,
               Validators.pattern(this.patternService.price),
           ] ],
-          status: [ NaN, [ Validators.required ]],
           unit: [ NaN, [ Validators.required ]],
           origin: [ '', [ Validators.required ]],
+          status: [ NaN, [ Validators.required ]],
           img_id: [ '' ],
           describe: [ '', [ Validators.required ]],
       });

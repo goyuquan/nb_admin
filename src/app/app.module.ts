@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { Message } from './message';
 import { NotFound } from './not-found';
 
+import { InitService } from './init.service';
 import { AuthService } from './auth/auth.service';
 import { DialogService } from './dialog.service';
 import { HttpService } from './share/http.service';
@@ -70,8 +71,9 @@ import 'hammerjs';
     AppRoutingModule
   ],
   providers: [
-    DialogService,
+    InitService,
     AuthService,
+    DialogService,
     HttpService,
     ErrorService,
     ConfigService,

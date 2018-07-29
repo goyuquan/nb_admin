@@ -1,116 +1,114 @@
 <h1 class="title"> product Edit </h1>
 <mat-divider></mat-divider>
 
-
 <mat-card>
-    <mat-card-content>
-        <h2>Tabs with text labels</h2>
+  <mat-card-content>
+    <h2>Tabs with text labels</h2>
 
-        <form (ngSubmit)="onSubmit()" [formGroup]="productGroup" class="nb-form">
+    <form (ngSubmit)="onSubmit()" [formGroup]="productGroup" class="nb-form">
 
-            <mat-form-field>
-                <input matInput placeholder="名称"
-                        formControlName="name"
-                        [errorStateMatcher]="matcher">
-                <button mat-button
-                        *ngIf="productGroup.get('name').value"
-                        matSuffix mat-icon-button
-                        aria-label="Clear"
-                        (click)="productGroup.patchValue({name: ''})">
-                    <mat-icon>close</mat-icon>
-                </button>
-                <mat-hint>无碍型提示</mat-hint>
-                <mat-error *ngIf="productGroup.get('name').hasError('required')">
-                    name  <strong>不能为空!</strong>
-                </mat-error>
-            </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="名称"
+          formControlName="name"
+          [errorStateMatcher]="matcher">
+          <button mat-button
+          *ngIf="productGroup.get('name').value"
+          matSuffix mat-icon-button
+          aria-label="Clear"
+          (click)="productGroup.patchValue({name: ''})">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-hint>无碍型提示</mat-hint>
+        <mat-error *ngIf="productGroup.get('name').hasError('required')">
+          name  <strong>不能为空!</strong>
+        </mat-error>
+      </mat-form-field>
 
-            <mat-form-field>
-                <span matPrefix>￥ &nbsp;</span>
-                <input matInput placeholder="价格"
-                        formControlName="price"
-                        [errorStateMatcher]="matcher">
-                <button mat-button
-                        *ngIf="productGroup.get('price').value"
-                        matSuffix mat-icon-button
-                        aria-label="Clear"
-                        (click)="productGroup.patchValue({price: ''})">
-                    <mat-icon>close</mat-icon>
-                </button>
-                <mat-error *ngIf="productGroup.get('price').hasError('pattern')">
-                    Please enter a price
-                </mat-error>
-                <mat-error *ngIf="productGroup.get('price').hasError('required')">
-                    price  <strong>不能为空!</strong>
-                </mat-error>
-            </mat-form-field>
+      <mat-form-field>
+        <span matPrefix>￥ &nbsp;</span>
+        <input matInput placeholder="价格"
+        formControlName="price"
+        [errorStateMatcher]="matcher">
+        <button mat-button
+          *ngIf="productGroup.get('price').value"
+          matSuffix mat-icon-button
+          aria-label="Clear"
+          (click)="productGroup.patchValue({price: ''})">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="productGroup.get('price').hasError('pattern')">
+          Please enter a price
+        </mat-error>
+        <mat-error *ngIf="productGroup.get('price').hasError('required')">
+          price  <strong>不能为空!</strong>
+        </mat-error>
+      </mat-form-field>
 
-            <mat-form-field>
-                <mat-select placeholder="状态" formControlName="status">
-                    <mat-option *ngFor="let status of productData.options.status"
-                    [value]="status.value">
-                    {{ status.name }} </mat-option>
-                </mat-select>
-                <mat-error *ngIf="productGroup.get('status').hasError('required')">
-                    status  <strong>不能为空!</strong>
-                </mat-error>
-            </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="状态" formControlName="status">
+          <mat-option *ngFor="let status of productData.options.status"
+          [value]="status.value">
+          {{ status.name }} </mat-option>
+        </mat-select>
+        <mat-error *ngIf="productGroup.get('status').hasError('required')">
+          status  <strong>不能为空!</strong>
+        </mat-error>
+      </mat-form-field>
 
-            <mat-form-field>
-                <mat-select placeholder="单位" formControlName="unit">
-                    <mat-option *ngFor="let unit of productData.options.unit"
-                    [value]="unit.value">
-                    {{ unit.name }} </mat-option>
-                </mat-select>
-                <mat-error *ngIf="productGroup.get('unit').hasError('required')">
-                    unit  <strong>不能为空!</strong>
-                </mat-error>
-            </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="单位" formControlName="unit">
+          <mat-option *ngFor="let unit of productData.options.unit"
+          [value]="unit.value">
+          {{ unit.name }} </mat-option>
+        </mat-select>
+        <mat-error *ngIf="productGroup.get('unit').hasError('required')">
+          unit  <strong>不能为空!</strong>
+        </mat-error>
+      </mat-form-field>
 
-            <mat-form-field>
-                <input matInput placeholder="产地"
-                        formControlName="origin"
-                        [errorStateMatcher]="matcher">
-                <button mat-button
-                        *ngIf="productGroup.get('origin').value"
-                        matSuffix mat-icon-button
-                        aria-label="Clear"
-                        (click)="productGroup.patchValue({origin: ''})">
-                    <mat-icon>close</mat-icon>
-                </button>
-                <mat-error *ngIf="productGroup.get('origin').hasError('required')">
-                    origin  <strong>不能为空!</strong>
-                </mat-error>
-            </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="产地"
+        formControlName="origin"
+        [errorStateMatcher]="matcher">
+        <button mat-button
+          *ngIf="productGroup.get('origin').value"
+          matSuffix mat-icon-button
+          aria-label="Clear"
+          (click)="productGroup.patchValue({origin: ''})">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="productGroup.get('origin').hasError('required')">
+          origin  <strong>不能为空!</strong>
+        </mat-error>
+      </mat-form-field>
 
-            <mat-form-field class="describe">
-                <textarea matInput
-                            formControlName="describe"
-                            placeholder="描述"
-                            matTextareaAutosize
-                            [errorStateMatcher]="matcher"
-                            matAutosizeMinRows="4"
-                            matAutosizeMaxRows="8"> </textarea>
-                <button mat-button
-                        *ngIf="productGroup.get('describe').value"
-                        matSuffix mat-icon-button
-                        aria-label="Clear"
-                        (click)="productGroup.patchValue({describe: ''})">
-                    <mat-icon>close</mat-icon>
-                </button>
-                <mat-error *ngIf="productGroup.get('describe').hasError('required')">
-                    describe  <strong>不能为空!</strong>
-                </mat-error>
-            </mat-form-field>
+      <mat-form-field class="describe">
+        <textarea matInput
+        formControlName="describe"
+        placeholder="描述"
+        matTextareaAutosize
+        [errorStateMatcher]="matcher"
+        matAutosizeMinRows="4"
+        matAutosizeMaxRows="8"> </textarea>
+        <button mat-button
+          *ngIf="productGroup.get('describe').value"
+          matSuffix mat-icon-button
+          aria-label="Clear"
+          (click)="productGroup.patchValue({describe: ''})">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="productGroup.get('describe').hasError('required')">
+          describe  <strong>不能为空!</strong>
+        </mat-error>
+      </mat-form-field>
 
+      <mat-divider inset ></mat-divider>
 
-            <mat-divider inset ></mat-divider>
+      <button mat-raised-button color="primary"
+      (click)="onSubmit"
+      [disabled]="productGroup.pristine || !productGroup.valid">
+      submit </button>
 
-            <button mat-raised-button color="primary"
-            (click)="onSubmit"
-            [disabled]="productGroup.pristine || !productGroup.valid">
-            submit </button>
-
-        </form>
-    </mat-card-content>
+    </form>
+  </mat-card-content>
 </mat-card>

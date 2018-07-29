@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 
 
+import { InitService } from './init.service'
 import { AuthService } from './auth/auth.service'
 import { ConfigService } from './share/config.service'
 
@@ -18,17 +19,18 @@ export class UserModel { id: number }
 })
 export class App {
 
-    httpLoading: boolean;
-    isLogin: boolean = true;
-    sidenavVisible: boolean;
-    userinfo: UserModel;
-    links: any[];
-    settingLinks: any[];
-    previousUrl: string;
-    backAvailable: boolean;
+    httpLoading: boolean
+    isLogin: boolean = true
+    sidenavVisible: boolean
+    userinfo: UserModel
+    links: any[]
+    settingLinks: any[]
+    previousUrl: string
+    backAvailable: boolean
 
     constructor (
         private httpService: HttpService,
+        private initService: InitService,
         private authService: AuthService,
         public configService: ConfigService,
         private location: Location,
@@ -37,26 +39,23 @@ export class App {
         this.sidenavVisible = this.isLogin ? true : false;
         this.links = this.configService.nav;
         this.settingLinks = this.configService.settingNav;
-
-        this.router.events.pipe(
-        filter(event => event instanceof NavigationEnd))
-        .subscribe(e => {
-            if (this.configService.unAuthenticatedPages.indexOf(this.previousUrl) === -1) {
-                this.backAvailable = true;
-            } else {
-                this.backAvailable = false;
-            }
-            this.previousUrl = e['url'];
-        });
+        this.initBack()
     }
 
     ngOnInit() {
-      document.body.removeChild(document.getElementById('loader'));
     }
 
     ngDoCheck() {
         this.httpLoading = this.httpService.loading;
         this.isLogin = this.authService.isLoggedIn;
+    }
+
+    ngAfterViewInit() {
+      this.initService.getAllOptions().subscribe(res => {
+        document.body.removeChild(document.getElementById('loader'));
+        this.configService.options = res
+      });
+
     }
 
     sidenavToggle() {
@@ -65,6 +64,19 @@ export class App {
 
     back() {
         this.location.back()
+    }
+
+    initBack() {
+      this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd))
+      .subscribe(e => {
+          if (this.configService.unAuthenticatedPages.indexOf(this.previousUrl) === -1) {
+              this.backAvailable = true;
+          } else {
+              this.backAvailable = false;
+          }
+          this.previousUrl = e['url'];
+      });
     }
 
     logout() {
