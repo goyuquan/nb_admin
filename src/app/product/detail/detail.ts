@@ -2,17 +2,16 @@ import { Component, HostBinding, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { slideInDownAnimation } from '../animations';
+import { slideInDownAnimation } from '../../animations';
 import { MatTableDataSource } from '@angular/material';
 
-import { ProductService } from './product.service';
-import { ConfigService } from '../share/config.service';
-import { ProductModel } from './product.model';
+import { ProductService } from '../product.service';
+import { ConfigService } from '../../share/config.service';
 
 @Component({
-    selector: 'product-detail',
-    templateUrl: './product-detail.html',
-    styleUrls: ['./product-detail.scss'],
+    selector: 'detail',
+    templateUrl: './detail.html',
+    styleUrls: ['./detail.scss'],
     animations: [ slideInDownAnimation ]
 })
 export class ProductDetail {

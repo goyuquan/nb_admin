@@ -3,12 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from '../auth/auth-guard.service';
 
-import { Product } from './product';
-import { ProductDetail } from './product-detail';
-import { ProductEdit } from './product-edit';
+import { Product } from './index/index';
+import { ProductDetail } from './detail/detail';
+import { ProductEdit } from './edit/edit';
+import { ProductCreate } from './create/create';
 
-import { ProductListResolver } from './product-list-resolver.service';
-import { ProductDetailResolver } from './product-detail-resolver.service';
+import { ProductListResolver } from './index/index-list-resolver.service';
+import { ProductDetailResolver } from './detail/detail-resolver.service';
 
 const producteRoute: Routes = [
   {
@@ -16,6 +17,10 @@ const producteRoute: Routes = [
     canActivate: [ AuthGuard ],
     resolve: { products: ProductListResolver },
     children: [
+      {
+        path: 'create',
+        component: ProductCreate,
+      },
       {
         path: 'edit/:id',
         component: ProductEdit,

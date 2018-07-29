@@ -6,10 +6,9 @@ import { Observable } from 'rxjs';
 
 import { ErrorStateMatcher } from '@angular/material/core';
 
-import { ProductService } from './product.service';
-import { ConfigService } from '../share/config.service';
-import { PatternService } from '../share/parttern.service';
-import { ProductModel } from './product.model';
+import { ProductService } from '../product.service';
+import { ConfigService } from '../../share/config.service';
+import { PatternService } from '../../share/parttern.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -19,8 +18,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-    templateUrl: './product-edit.html',
-    styleUrls: ['./product-edit.scss'],
+    templateUrl: './edit.html',
+    styleUrls: ['./edit.scss'],
 })
 export class ProductEdit {
     productGroup: FormGroup;

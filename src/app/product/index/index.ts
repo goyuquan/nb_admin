@@ -5,13 +5,12 @@ import { Observable } from 'rxjs';
 
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 
-import { ConfigService } from '../share/config.service';
-import { ProductModel } from './product.model';
+import { ConfigService } from '../../share/config.service';
 
 @Component({
-    selector: 'product',
-    templateUrl: './product.html',
-    styleUrls: ['./product.scss'],
+    selector: 'index',
+    templateUrl: './index.html',
+    styleUrls: ['./index.scss'],
 })
 export class Product {
     displayedColumns = [
@@ -53,6 +52,10 @@ export class Product {
         filterValue = filterValue.trim(); // Remove whitespace
         filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
         this.dataSource.filter = filterValue;
+    }
+
+    onCreateOpen() {
+
     }
 
 }

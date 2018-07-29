@@ -15,9 +15,10 @@ import {
     MatDividerModule,
 } from '@angular/material';
 
-import { Product }    from './product';
-import { ProductDetail }  from './product-detail';
-import { ProductEdit }  from './product-edit';
+import { Product }    from './index/index';
+import { ProductDetail }  from './detail/detail';
+import { ProductEdit }  from './edit/edit';
+import { ProductCreate }  from './create/create';
 
 import { ProductService } from './product.service';
 import { ProductRoutingModule } from './product-routing.module';
@@ -41,7 +42,8 @@ import { ProductRoutingModule } from './product-routing.module';
     declarations: [
         Product,
         ProductDetail,
-        ProductEdit
+        ProductEdit,
+        ProductCreate
     ],
     providers: [ ProductService ]
 })
